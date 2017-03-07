@@ -9,9 +9,14 @@
 #import "BBConnectViewController.h"
 #import "BattleBump-Swift.h"
 
-@interface BBConnectViewController ()
+@interface BBConnectViewController () <BBConnectServiceManagerDelegate>
 
 @property (strong, nonatomic)  BBConnectServiceManager *connectServiceManager;
+
+// Testing
+@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
+@property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
+
 
 @end
 
@@ -22,14 +27,53 @@
     // Do any additional setup after loading the view.
     
     self.connectServiceManager = [[BBConnectServiceManager alloc] init];
-    
-    
+    self.connectServiceManager.delegate = self;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+-(void)connectedDevicesChangedWithManager:(BBConnectServiceManager *)manager connectedDevices:(NSArray<NSString *> *)connectedDevices {
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
+        
+        self.connectedLabel.text = connectedDevices[0];
+    }];    
+}
+
+
+-(void)receivedPlayWithManager:(BBConnectServiceManager *)manager play:(NSString *)play {
+ 
+    [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
+        
+        self.resultLabel.text = play;
+    }];
+}
+
+
+// Testing
+
+- (IBAction)rockButtonPressed:(UIButton *)sender {
+
+    [self.connectServiceManager sendWithPlay:@"👊"];
+}
+
+
+- (IBAction)paperButtonPressed:(UIButton *)sender {
+    
+    [self.connectServiceManager sendWithPlay:@"✋"];
+}
+
+
+- (IBAction)scissorsButtonPressed:(UIButton *)sender {
+
+    [self.connectServiceManager sendWithPlay:@"✌️"];
+}
+
 
 /*
 #pragma mark - Navigation
