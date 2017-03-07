@@ -7,6 +7,7 @@
 //
 
 #import "BBConnectViewController.h"
+#import "BattleBump-Swift.h"
 
 @interface BBConnectViewController ()
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    BBConnectServiceManager *connectServiceManager = [[BBConnectServiceManager alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {

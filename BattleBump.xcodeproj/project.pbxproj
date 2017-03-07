@@ -18,6 +18,7 @@
 		A2A182511E6E0613006F5DA8 /* Connect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A182501E6E0613006F5DA8 /* Connect.storyboard */; };
 		A2A182531E6E061E006F5DA8 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A182521E6E061E006F5DA8 /* Game.storyboard */; };
 		A2A182561E6E127B006F5DA8 /* BBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A182551E6E127B006F5DA8 /* BBRootViewController.m */; };
+		A2BD05361E6E50A200AE31D3 /* BBConnectServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD05351E6E50A200AE31D3 /* BBConnectServiceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		A2A182521E6E061E006F5DA8 /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		A2A182541E6E127B006F5DA8 /* BBRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBRootViewController.h; sourceTree = "<group>"; };
 		A2A182551E6E127B006F5DA8 /* BBRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBRootViewController.m; sourceTree = "<group>"; };
+		A2BD05341E6E50A200AE31D3 /* BattleBump-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BattleBump-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		A2BD05351E6E50A200AE31D3 /* BBConnectServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBConnectServiceManager.swift; path = ../BBConnectServiceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,7 @@
 		A260C3571E6DF1A600F5F84F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A2BD05341E6E50A200AE31D3 /* BattleBump-Bridging-Header.h */,
 				A260C3631E6DF1A600F5F84F /* Assets.xcassets */,
 				A260C3681E6DF1A600F5F84F /* Info.plist */,
 				A260C3581E6DF1A600F5F84F /* main.m */,
@@ -131,6 +135,7 @@
 			children = (
 				A260C35A1E6DF1A600F5F84F /* AppDelegate.h */,
 				A260C35B1E6DF1A600F5F84F /* AppDelegate.m */,
+				A2BD05351E6E50A200AE31D3 /* BBConnectServiceManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 					A260C3531E6DF1A600F5F84F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = L73BUW34SZ;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					A260C36C1E6DF1A600F5F84F = {
@@ -269,6 +275,7 @@
 				A22C50D71E6E162300A476F0 /* BBConnectViewController.m in Sources */,
 				A2A182561E6E127B006F5DA8 /* BBRootViewController.m in Sources */,
 				A22C50DA1E6E163100A476F0 /* BBGameViewController.m in Sources */,
+				A2BD05361E6E50A200AE31D3 /* BBConnectServiceManager.swift in Sources */,
 				A260C3591E6DF1A600F5F84F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,11 +412,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = L73BUW34SZ;
 				INFOPLIST_FILE = BattleBump/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = caldavies.BattleBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BattleBump-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -417,17 +428,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = L73BUW34SZ;
 				INFOPLIST_FILE = BattleBump/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = caldavies.BattleBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BattleBump-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		A260C37A1E6DF1A600F5F84F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 9JUJMAUQ3E;
 				INFOPLIST_FILE = BattleBumpTests/Info.plist;
@@ -441,6 +456,7 @@
 		A260C37B1E6DF1A600F5F84F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 9JUJMAUQ3E;
 				INFOPLIST_FILE = BattleBumpTests/Info.plist;
