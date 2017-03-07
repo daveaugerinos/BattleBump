@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F35265D1E6E4EF800D84F2C /* UICircularProgressRingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F35265C1E6E4EF800D84F2C /* UICircularProgressRingLayer.swift */; };
+		3F3526601E6E4F5E00D84F2C /* UICircularProgressRingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F35265F1E6E4F5E00D84F2C /* UICircularProgressRingDelegate.swift */; };
+		3F3526621E6E4FC400D84F2C /* UICircularProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3526611E6E4FC400D84F2C /* UICircularProgressRingView.swift */; };
 		A22C50D71E6E162300A476F0 /* BBConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A22C50D61E6E162300A476F0 /* BBConnectViewController.m */; };
 		A22C50DA1E6E163100A476F0 /* BBGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A22C50D91E6E163100A476F0 /* BBGameViewController.m */; };
 		A260C3591E6DF1A600F5F84F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A260C3581E6DF1A600F5F84F /* main.m */; };
@@ -31,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F35265B1E6E4EF700D84F2C /* BattleBump-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BattleBump-Bridging-Header.h"; sourceTree = "<group>"; };
+		3F35265C1E6E4EF800D84F2C /* UICircularProgressRingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingLayer.swift; sourceTree = "<group>"; };
+		3F35265F1E6E4F5E00D84F2C /* UICircularProgressRingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingDelegate.swift; sourceTree = "<group>"; };
+		3F3526611E6E4FC400D84F2C /* UICircularProgressRingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingView.swift; sourceTree = "<group>"; };
 		A22C50D51E6E162300A476F0 /* BBConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBConnectViewController.h; sourceTree = "<group>"; };
 		A22C50D61E6E162300A476F0 /* BBConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBConnectViewController.m; sourceTree = "<group>"; };
 		A22C50D81E6E163100A476F0 /* BBGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBGameViewController.h; sourceTree = "<group>"; };
@@ -70,6 +77,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F35265E1E6E4F2E00D84F2C /* UICircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				3F35265C1E6E4EF800D84F2C /* UICircularProgressRingLayer.swift */,
+				3F35265F1E6E4F5E00D84F2C /* UICircularProgressRingDelegate.swift */,
+				3F3526611E6E4FC400D84F2C /* UICircularProgressRingView.swift */,
+			);
+			name = UICircularProgress;
+			sourceTree = "<group>";
+		};
 		A260C34B1E6DF1A600F5F84F = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +120,7 @@
 		A260C3571E6DF1A600F5F84F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3F35265B1E6E4EF700D84F2C /* BattleBump-Bridging-Header.h */,
 				A260C3631E6DF1A600F5F84F /* Assets.xcassets */,
 				A260C3681E6DF1A600F5F84F /* Info.plist */,
 				A260C3581E6DF1A600F5F84F /* main.m */,
@@ -155,6 +173,7 @@
 				A260C3601E6DF1A600F5F84F /* Main.storyboard */,
 				A2A182501E6E0613006F5DA8 /* Connect.storyboard */,
 				A2A182521E6E061E006F5DA8 /* Game.storyboard */,
+				3F35265E1E6E4F2E00D84F2C /* UICircularProgress */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -209,6 +228,7 @@
 					A260C3531E6DF1A600F5F84F = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = L73BUW34SZ;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					A260C36C1E6DF1A600F5F84F = {
@@ -268,6 +288,9 @@
 				A260C35C1E6DF1A600F5F84F /* AppDelegate.m in Sources */,
 				A22C50D71E6E162300A476F0 /* BBConnectViewController.m in Sources */,
 				A2A182561E6E127B006F5DA8 /* BBRootViewController.m in Sources */,
+				3F35265D1E6E4EF800D84F2C /* UICircularProgressRingLayer.swift in Sources */,
+				3F3526621E6E4FC400D84F2C /* UICircularProgressRingView.swift in Sources */,
+				3F3526601E6E4F5E00D84F2C /* UICircularProgressRingDelegate.swift in Sources */,
 				A22C50DA1E6E163100A476F0 /* BBGameViewController.m in Sources */,
 				A260C3591E6DF1A600F5F84F /* main.m in Sources */,
 			);
@@ -405,11 +428,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = L73BUW34SZ;
 				INFOPLIST_FILE = BattleBump/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = caldavies.BattleBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BattleBump/BattleBump-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -417,17 +444,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = L73BUW34SZ;
 				INFOPLIST_FILE = BattleBump/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = caldavies.BattleBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BattleBump/BattleBump-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		A260C37A1E6DF1A600F5F84F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 9JUJMAUQ3E;
 				INFOPLIST_FILE = BattleBumpTests/Info.plist;
@@ -441,6 +472,7 @@
 		A260C37B1E6DF1A600F5F84F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 9JUJMAUQ3E;
 				INFOPLIST_FILE = BattleBumpTests/Info.plist;
