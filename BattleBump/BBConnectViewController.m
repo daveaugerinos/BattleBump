@@ -41,24 +41,25 @@
     
     [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
         
-        self.connectedLabel.text = connectedDevices[0];
-    }];    
+        if (connectedDevices ) {
+            self.connectedLabel.text = [connectedDevices firstObject];
+        }
+    }];
 }
 
 
 -(void)receivedPlayWithManager:(BBConnectServiceManager *)manager play:(NSString *)play {
- 
+    
     [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
         
         self.resultLabel.text = play;
     }];
 }
 
-
 // Testing
 
 - (IBAction)rockButtonPressed:(UIButton *)sender {
-
+    
     [self.connectServiceManager sendWithPlay:@"👊"];
 }
 
@@ -70,19 +71,19 @@
 
 
 - (IBAction)scissorsButtonPressed:(UIButton *)sender {
-
+    
     [self.connectServiceManager sendWithPlay:@"✌️"];
 }
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
