@@ -208,7 +208,7 @@
 				TargetAttributes = {
 					A260C3531E6DF1A600F5F84F = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9JUJMAUQ3E;
+						DevelopmentTeam = L73BUW34SZ;
 						ProvisioningStyle = Automatic;
 					};
 					A260C36C1E6DF1A600F5F84F = {
@@ -405,10 +405,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9JUJMAUQ3E;
+				DEVELOPMENT_TEAM = L73BUW34SZ;
 				INFOPLIST_FILE = BattleBump/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = daveaugerinos.BattleBump;
+				PRODUCT_BUNDLE_IDENTIFIER = caldavies.BattleBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -417,10 +417,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9JUJMAUQ3E;
+				DEVELOPMENT_TEAM = L73BUW34SZ;
 				INFOPLIST_FILE = BattleBump/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = daveaugerinos.BattleBump;
+				PRODUCT_BUNDLE_IDENTIFIER = caldavies.BattleBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
