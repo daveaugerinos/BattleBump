@@ -10,8 +10,8 @@ import UIKit
 
 class Game: NSObject {
 
-    private let name: String
-    private let stakes: String
+    let name: String
+    let stakes: String
     
     init(name: String, stakes:String) {
         

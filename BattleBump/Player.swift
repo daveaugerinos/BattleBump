@@ -10,8 +10,8 @@ import UIKit
 
 class Player: NSObject {
 
-    private let name: String
-    private let emoji: String
+    let name: String
+    let emoji: String
 
     init(name: String, emoji:String) {
         
