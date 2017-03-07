@@ -11,7 +11,6 @@
 
 @interface BBConnectCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) Player *player;
-@property (nonatomic, strong) Game *game;
+@property (nonatomic, strong) Invitee *invitee;
 
 @end

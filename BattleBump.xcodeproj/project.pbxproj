@@ -15,6 +15,7 @@
 		A25D7B191E6F60A50090BC65 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D7B181E6F60A50090BC65 /* Player.swift */; };
 		A25D7B1B1E6F60B70090BC65 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D7B1A1E6F60B70090BC65 /* Game.swift */; };
 		A25D7B1E1E6F66EF0090BC65 /* BBConnectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A25D7B1D1E6F66EF0090BC65 /* BBConnectCollectionViewCell.m */; };
+		A25D7B201E6F74050090BC65 /* Invitee.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D7B1F1E6F74050090BC65 /* Invitee.swift */; };
 		A260C3591E6DF1A600F5F84F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A260C3581E6DF1A600F5F84F /* main.m */; };
 		A260C35C1E6DF1A600F5F84F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A260C35B1E6DF1A600F5F84F /* AppDelegate.m */; };
 		A260C3621E6DF1A600F5F84F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A260C3601E6DF1A600F5F84F /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		A25D7B1A1E6F60B70090BC65 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A25D7B1C1E6F66EF0090BC65 /* BBConnectCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBConnectCollectionViewCell.h; sourceTree = "<group>"; };
 		A25D7B1D1E6F66EF0090BC65 /* BBConnectCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBConnectCollectionViewCell.m; sourceTree = "<group>"; };
+		A25D7B1F1E6F74050090BC65 /* Invitee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invitee.swift; sourceTree = "<group>"; };
 		A260C3541E6DF1A600F5F84F /* BattleBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BattleBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A260C3581E6DF1A600F5F84F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A260C35A1E6DF1A600F5F84F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				A25D7B181E6F60A50090BC65 /* Player.swift */,
 				A25D7B1A1E6F60B70090BC65 /* Game.swift */,
+				A25D7B1F1E6F74050090BC65 /* Invitee.swift */,
 				A260C35A1E6DF1A600F5F84F /* AppDelegate.h */,
 				A260C35B1E6DF1A600F5F84F /* AppDelegate.m */,
 				A2BD05351E6E50A200AE31D3 /* BBConnectServiceManager.swift */,
@@ -299,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A25D7B201E6F74050090BC65 /* Invitee.swift in Sources */,
 				A25D7B191E6F60A50090BC65 /* Player.swift in Sources */,
 				A260C35C1E6DF1A600F5F84F /* AppDelegate.m in Sources */,
 				A22C50D71E6E162300A476F0 /* BBConnectViewController.m in Sources */,

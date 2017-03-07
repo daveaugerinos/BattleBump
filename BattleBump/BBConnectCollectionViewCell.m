@@ -18,30 +18,18 @@
 
 @implementation BBConnectCollectionViewCell
 
--(void)setName:(Player *)player {
+-(void)setInvitee:(Invitee *)invitee {
     
-    _player = player;
-    [self configureCellWithPlayer];
+    _invitee = invitee;
+    [self configureCellWithInvitee];
 }
 
 
--(void)setGame:(Game *)game {
+-(void)configureCellWithInvitee {
     
-    _game = game;
-    [self configureCellWithGame];
-}
-
-
--(void)configureCellWithPlayer {
-    
-    self.playerEmojiLabel.text = self.player.emoji;
-    self.playerNameLabel.text = self.player.name;
-}
-
-
--(void)configureCellWithGame {
-    
-    self.gameNameLabel.text = self.game.name;
+    self.playerEmojiLabel.text = self.invitee.player.emoji;
+    self.playerNameLabel.text = self.invitee.player.name;
+    self.gameNameLabel.text = self.invitee.game.name;
 }
 
 @end
