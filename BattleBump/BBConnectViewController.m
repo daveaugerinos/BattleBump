@@ -15,10 +15,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *playerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playerEmojiLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gameStakesLabel;
 @property (weak, nonatomic) IBOutlet UITextField *playerNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *playerEmojiTextField;
 @property (weak, nonatomic) IBOutlet UITextField *gameNameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *chooseInviteesLabel;
+@property (weak, nonatomic) IBOutlet UITextField *gameStakesTextField;
 
 @end
 
@@ -45,7 +47,7 @@
 
         if(connectedDevices) {
 
-            self.connectedLabel.text = [connectedDevices firstObject];
+//            self.connectedLabel.text = [connectedDevices firstObject];
         }
     }];
 }
@@ -55,45 +57,17 @@
 
     [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
     
-        self.resultLabel.text = play;
+
     }];
 }
 
 
-- (IBAction)shareButtonPressed:(UIButton *)sender {
-
-        self.resultLabel.text = play;
-    }];
-}
-
-// Testing
-
-- (IBAction)rockButtonPressed:(UIButton *)sender {
-
-    [self.connectServiceManager sendWithPlay:@"👊"];
-}
-
-
-- (IBAction)paperButtonPressed:(UIButton *)sender {
-
-    [self.connectServiceManager sendWithPlay:@"✋"];
-}
-
-
-- (IBAction)startGameButtonPressed:(UIButton *)sender {
+- (IBAction)joinButtonPressed:(UIButton *)sender {
 
 }
 
-
-/*
- #pragma mark - Navigation
-
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (IBAction)startGamePressed:(UIButton *)sender {
+}
 
 
 @end

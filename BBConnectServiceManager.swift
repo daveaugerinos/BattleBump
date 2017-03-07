@@ -9,7 +9,6 @@
 import UIKit
 import MultipeerConnectivity
 
-
 @objc protocol BBConnectServiceManagerDelegate {
     
     func connectedDevicesChanged(manager : BBConnectServiceManager, connectedDevices: [String])
