@@ -12,11 +12,13 @@
 @interface BBConnectViewController () <BBConnectServiceManagerDelegate>
 
 @property (strong, nonatomic)  BBConnectServiceManager *connectServiceManager;
-
-// Testing
-@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
-@property (weak, nonatomic) IBOutlet UILabel *connectedLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *playerNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *playerEmojiLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gameNameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *playerNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *playerEmojiTextField;
+@property (weak, nonatomic) IBOutlet UITextField *gameNameTextField;
+@property (weak, nonatomic) IBOutlet UILabel *chooseInviteesLabel;
 
 @end
 
@@ -43,7 +45,7 @@
         
         if(connectedDevices) {
             
-            self.connectedLabel.text = [connectedDevices firstObject];
+//            self.connectedLabel.text = [connectedDevices firstObject];
         }
     }];
 }
@@ -53,39 +55,19 @@
  
     [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
         
-        self.resultLabel.text = play;
+//        self.resultLabel.text = play;
     }];
 }
 
 
-// Testing
+- (IBAction)shareButtonPressed:(UIButton *)sender {
 
-- (IBAction)rockButtonPressed:(UIButton *)sender {
-
-    [self.connectServiceManager sendWithPlay:@"👊"];
 }
 
 
-- (IBAction)paperButtonPressed:(UIButton *)sender {
-    
-    [self.connectServiceManager sendWithPlay:@"✋"];
+- (IBAction)startGameButtonPressed:(UIButton *)sender {
+
 }
 
-
-- (IBAction)scissorsButtonPressed:(UIButton *)sender {
-
-    [self.connectServiceManager sendWithPlay:@"✌️"];
-}
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
