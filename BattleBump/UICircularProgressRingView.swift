@@ -615,7 +615,7 @@ import UIKit
     /**
      Sets the current value for the progress ring, calling this method while ring is animating will cancel the previously set animation and start a new one.
      
-     - Parameter newVal: The value to be set for the progress ring
+     - Parameter value: The value to be set for the progress ring
      - Parameter animationDuration: The time interval duration for the animation
      - Parameter completion: The completion closure block that will be called when animtion is finished (also called when animationDuration = 0), default is nil
      

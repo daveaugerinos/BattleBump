@@ -11,6 +11,8 @@
 
 @interface BBConnectViewController ()
 
+@property (strong, nonatomic)  BBConnectServiceManager *connectServiceManager;
+
 @end
 
 @implementation BBConnectViewController
@@ -19,7 +21,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    BBConnectServiceManager *connectServiceManager = [[BBConnectServiceManager alloc] init];
+    self.connectServiceManager = [[BBConnectServiceManager alloc] init];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

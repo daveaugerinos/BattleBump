@@ -9,7 +9,7 @@
 import UIKit
 import MultipeerConnectivity
 
-class BBConnectServiceManager: NSObject {
+@objc class BBConnectServiceManager: NSObject {
     
     private let ConnectServiceManagerType = "BattleBumpRPS"
     private let myPeerID = MCPeerID(displayName: UIDevice.current.name)
@@ -24,11 +24,12 @@ class BBConnectServiceManager: NSObject {
     }
     
     deinit {
+        
         self.serviceAdvertiser.startAdvertisingPeer()
     }
 }
 
-extension BBConnectServiceManager: MCNearbyServiceAdvertiserDelegate{
+extension BBConnectServiceManager: MCNearbyServiceAdvertiserDelegate {
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         print("didNotStartAdvertisingPeer: \(error)")
