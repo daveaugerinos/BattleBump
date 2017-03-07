@@ -35,7 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3F35265B1E6E4EF700D84F2C /* BattleBump-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BattleBump-Bridging-Header.h"; sourceTree = "<group>"; };
 		3F35265C1E6E4EF800D84F2C /* UICircularProgressRingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingLayer.swift; sourceTree = "<group>"; };
 		3F35265F1E6E4F5E00D84F2C /* UICircularProgressRingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingDelegate.swift; sourceTree = "<group>"; };
 		3F3526611E6E4FC400D84F2C /* UICircularProgressRingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingView.swift; sourceTree = "<group>"; };
@@ -231,7 +230,7 @@
 				TargetAttributes = {
 					A260C3531E6DF1A600F5F84F = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = L73BUW34SZ;
+						DevelopmentTeam = 9JUJMAUQ3E;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -434,10 +433,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = L73BUW34SZ;
+				DEVELOPMENT_TEAM = 9JUJMAUQ3E;
 				INFOPLIST_FILE = BattleBump/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = caldavies.BattleBump;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daveaugerinos.BattleBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BattleBump-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -450,10 +449,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = L73BUW34SZ;
+				DEVELOPMENT_TEAM = 9JUJMAUQ3E;
 				INFOPLIST_FILE = BattleBump/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = caldavies.BattleBump;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daveaugerinos.BattleBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BattleBump-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

@@ -41,8 +41,11 @@
     
     [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
         
-        self.connectedLabel.text = connectedDevices[0];
-    }];    
+        if(connectedDevices) {
+            
+            self.connectedLabel.text = [connectedDevices firstObject];
+        }
+    }];
 }
 
 
