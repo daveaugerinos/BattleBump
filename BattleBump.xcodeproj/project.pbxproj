@@ -230,7 +230,7 @@
 				TargetAttributes = {
 					A260C3531E6DF1A600F5F84F = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = L73BUW34SZ;
+						DevelopmentTeam = 9JUJMAUQ3E;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -434,11 +434,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = L73BUW34SZ;
+				DEVELOPMENT_TEAM = 9JUJMAUQ3E;
 				INFOPLIST_FILE = BattleBump/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = caldavies.BattleBump;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daveaugerinos.BattleBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BattleBump-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -451,11 +451,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = L73BUW34SZ;
+				DEVELOPMENT_TEAM = 9JUJMAUQ3E;
 				INFOPLIST_FILE = BattleBump/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = caldavies.BattleBump;
+				PRODUCT_BUNDLE_IDENTIFIER = com.daveaugerinos.BattleBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BattleBump-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
