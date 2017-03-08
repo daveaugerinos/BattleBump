@@ -89,7 +89,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var showFloatingPoint: Bool
     @NSManaged var decimalPlaces: Int
     
-    var animationDuration: TimeInterval = 1.0
+    var animationDuration: TimeInterval = 5.0
     var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
     var animated = false
     
