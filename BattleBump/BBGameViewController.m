@@ -12,10 +12,11 @@
 
 @interface BBGameViewController ()
 
-//@property (weak, nonatomic) IBOutlet UICircularProgressRingView *progressRing;
+@property (weak, nonatomic) IBOutlet UICircularProgressRingView *progressRing;
 @property (weak, nonatomic) IBOutlet UILabel *rockLabel;
 @property (weak, nonatomic) IBOutlet UILabel *paperLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scissorsLabel;
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 
@@ -35,7 +36,7 @@
     [self.scissorsLabel addGestureRecognizer:confirmScissors];
     self.scissorsLabel.userInteractionEnabled = YES;
     
-    [self configureViews];
+
 }
 
 #pragma mark - Confirmation Gestures -
@@ -88,7 +89,16 @@
     
 }
 
-
+//-(void)makeCountdown
+//{
+//    //make frame
+//    float counter = 5;
+//}
+//
+//-(void)startCounting
+//{
+//    
+//}
 
 -(void)configureViews
 {
@@ -102,28 +112,11 @@
 
 - (IBAction)startCountdown:(UIButton *)sender
 {
-//    CGFloat float = 1;
-//    NSTimeInterval progressTime = 5.0;
-//    [self.progressRing setProgressWithValue:(0.0) animationDuration:progressTime completion:nil];
+    
+    NSTimeInterval progressTime = 5.0;
+    [self.progressRing setProgressWithValue:(0.0) animationDuration:progressTime completion:nil];
 }
 
-
--(void)addBlurViewToView:(UIView *)view
-{
-    if (!UIAccessibilityIsReduceTransparencyEnabled()) {
-        view.backgroundColor = [UIColor clearColor];
-        
-        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-        UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-        blurEffectView.frame = self.view.bounds;
-        blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
-        [view addSubview:blurEffectView];
-    }
-//    else {
-//        view.backgroundColor = [UIColor blackColor];
-//    }
-}
 
 /*
 #pragma mark - Navigation

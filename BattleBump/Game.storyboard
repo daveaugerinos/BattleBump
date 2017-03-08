@@ -70,21 +70,44 @@
                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CxO-Tv-Ruy">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CxO-Tv-Ruy">
                                 <rect key="frame" x="129" y="466" width="117" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Start Countdown"/>
                                 <connections>
                                     <action selector="startCountdown:" destination="IQO-lq-MNe" eventType="touchUpInside" id="29g-fw-zQA"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFo-fR-xpo">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFo-fR-xpo" customClass="UICircularProgressRingView" customModule="BattleBump" customModuleProvider="target">
                                 <rect key="frame" x="62" y="208" width="250" height="250"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="aZN-4f-oJi"/>
                                     <constraint firstAttribute="width" constant="250" id="zpf-g2-3Fe"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="outerRingWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="innerRingWidth">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="decimalPlaces">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showFloatingPoint" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
+                                        <color key="value" red="1" green="0.074743433492410416" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="70"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rock" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mbj-5r-0Jk">
                                 <rect key="frame" x="95" y="558" width="35" height="18"/>
@@ -105,6 +128,8 @@
                             <constraint firstItem="pSi-K7-M4f" firstAttribute="top" secondItem="pKu-Nj-S2B" secondAttribute="bottom" constant="1" id="KuB-ct-Q3M"/>
                             <constraint firstItem="RMQ-iU-oe5" firstAttribute="top" secondItem="pSi-K7-M4f" secondAttribute="bottom" constant="30" id="NZ1-tH-PkR"/>
                             <constraint firstItem="9QW-rL-RJG" firstAttribute="trailing" secondItem="tYc-lm-cpa" secondAttribute="trailingMargin" id="QkB-95-gIy"/>
+                            <constraint firstItem="ve5-yi-xT9" firstAttribute="top" secondItem="CxO-Tv-Ruy" secondAttribute="bottom" constant="62" id="TtD-F7-fst"/>
+                            <constraint firstItem="CxO-Tv-Ruy" firstAttribute="centerX" secondItem="tYc-lm-cpa" secondAttribute="centerX" id="UNd-lv-L72"/>
                             <constraint firstItem="ve5-yi-xT9" firstAttribute="centerX" secondItem="miJ-z8-sPv" secondAttribute="centerX" id="UWl-Et-h8p"/>
                             <constraint firstItem="yFo-fR-xpo" firstAttribute="centerX" secondItem="tYc-lm-cpa" secondAttribute="centerX" id="Vi6-96-CBH"/>
                             <constraint firstItem="pSi-K7-M4f" firstAttribute="centerX" secondItem="tYc-lm-cpa" secondAttribute="centerX" id="aco-VQ-GiD"/>
@@ -116,6 +141,7 @@
                     </view>
                     <connections>
                         <outlet property="paperLabel" destination="pSi-K7-M4f" id="4aQ-iE-Pst"/>
+                        <outlet property="progressRing" destination="yFo-fR-xpo" id="bTg-pz-gBR"/>
                         <outlet property="rockLabel" destination="3Wz-ga-G3k" id="40o-3q-5az"/>
                         <outlet property="scissorsLabel" destination="miJ-z8-sPv" id="vcu-az-eVi"/>
                     </connections>
