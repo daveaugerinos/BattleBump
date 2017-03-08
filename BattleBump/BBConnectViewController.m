@@ -61,7 +61,8 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 
     [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
     
-
+        [self.invitees addObject:invitee];
+        [self.inviteeCollectionView reloadData];
     }];
 }
 
