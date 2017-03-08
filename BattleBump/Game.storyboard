@@ -77,10 +77,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CxO-Tv-Ruy">
-                                <rect key="frame" x="129" y="466" width="117" height="30"/>
-                                <state key="normal" title="Start Countdown"/>
+                                <rect key="frame" x="166" y="466" width="43" height="30"/>
+                                <state key="normal" title="Ready"/>
                                 <connections>
-                                    <action selector="startCountdown:" destination="IQO-lq-MNe" eventType="touchUpInside" id="29g-fw-zQA"/>
+                                    <action selector="readyButtonPressed:" destination="IQO-lq-MNe" eventType="touchUpInside" id="pQ2-Px-0gZ"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFo-fR-xpo" customClass="UICircularProgressRingView" customModule="BattleBump" customModuleProvider="target">

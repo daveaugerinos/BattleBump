@@ -38,16 +38,21 @@
     [self configureViews];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)startCountdown:(UIButton *)sender
+- (IBAction)readyButtonPressed:(UIButton *)sender
 {
+    self.rockConfirmationIcon.alpha = 0.0;
+    self.paperConfirmationIcon.alpha = 0.0;
+    self.scissorsConfirmationIcon.alpha = 0.0;
+    self.giantMoveLabel.alpha = 0.0;
     
-//    NSTimeInterval progressTime = 5.0;
+    if(self.gameLogicManager.myConfirmedMove) {
+    self.gameLogicManager.myConfirmedMove = nil;
+    }
     [self.progressRing setProgressWithValue:(0.0) animationDuration:5.0 completion:^(void){
         
         //picks random move if user hasn't chosen one by the time timer completes
@@ -70,9 +75,8 @@
 
         }
         
-        //BIG ICON OF self.gameLogicManager.myConfirmedMove
         [self drawGiantMoveLabel];
-        
+        [self.progressRing setProgressWithValue:5.0 animationDuration:0.5 completion:nil];
     }];
     // completion block also needs:  reset values and call setNeedsDisplay on mainQueue
 }
@@ -80,6 +84,7 @@
 -(void)drawGiantMoveLabel
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
+        self.giantMoveLabel.alpha = 1.0;
         NSUInteger i = self.gameLogicManager.myConfirmedMove.length;
         switch (i) {
             case 4:
@@ -104,21 +109,16 @@
     UITapGestureRecognizer *confirmRock = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didConfirmRock)];
     [self.rockLabel addGestureRecognizer:confirmRock];
     
-    
     self.paperLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *confirmPaper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didConfirmPaper)];
     [self.paperLabel addGestureRecognizer:confirmPaper];
-    
-    
     
     self.scissorsLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *confirmScissors = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didConfirmScissors)];
     [self.scissorsLabel addGestureRecognizer:confirmScissors];
 }
 
-
 #pragma mark - Confirmation Gestures -
-
 
 -(void)didConfirmRock
 {
@@ -154,6 +154,7 @@
     self.gameLogicManager.myConfirmedMove = @"Paper";
     NSLog(@"%@", self.gameLogicManager.myConfirmedMove);
 }
+
 -(void)didConfirmScissors
 {
     self.scissorsConfirmationIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.scissorsLabel.bounds.origin.x, self.scissorsLabel.bounds.origin.y, self.scissorsLabel.bounds.size.width, self.scissorsLabel.bounds.size.height)];
@@ -170,61 +171,6 @@
     self.gameLogicManager.myConfirmedMove = @"Scissors";
     NSLog(@"%@", self.gameLogicManager.myConfirmedMove);
 }
-
--(void)removeOtherConfirmationIcons
-{
-    
-}
-
-//-(void)willConfirmRock
-//{
-//    self.rockLabel.alpha = 1.0;
-//    self.paperLabel.alpha = 0.3;
-//    self.scissorsLabel.alpha = 0.3;
-//
-//    UIImageView *confirmationIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.rockLabel.bounds.origin.x, self.rockLabel.bounds.origin.y, self.rockLabel.bounds.size.width,   self.rockLabel.bounds.size.height)];
-//    confirmationIcon.image = [[UIImage imageNamed:@"confirmationTick"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//    confirmationIcon.tintColor = [UIColor greenColor];
-//
-//    [self.rockLabel addSubview:confirmationIcon];
-//
-//    confirmationIcon.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *finalConfirmTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didConfirmRock)];
-//    [confirmationIcon addGestureRecognizer:finalConfirmTap];
-//}
-//
-//-(void)willConfirmPaper
-//{
-//    self.paperLabel.alpha = 1.0;
-//    self.rockLabel.alpha = 0.3;
-//    self.scissorsLabel.alpha = 0.3;
-//
-//    UIImageView *confirmationIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.paperLabel.bounds.origin.x, self.paperLabel.bounds.origin.y, self.paperLabel.bounds.size.width, self.paperLabel.bounds.size.height)];
-//    confirmationIcon.image = [[UIImage imageNamed:@"confirmationTick"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//    confirmationIcon.tintColor = [UIColor greenColor];
-//    [self.paperLabel addSubview:confirmationIcon];
-//
-//    confirmationIcon.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *finalConfirmTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didConfirmPaper)];
-//    [confirmationIcon addGestureRecognizer:finalConfirmTap];
-//}
-//
-//-(void)willConfirmScissors
-//{
-//    self.scissorsLabel.alpha = 1.0;
-//    self.rockLabel.alpha = 0.3;
-//    self.paperLabel.alpha = 0.3;
-//    
-//    UIImageView *confirmationIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.scissorsLabel.bounds.origin.x, self.scissorsLabel.bounds.origin.y, self.scissorsLabel.bounds.size.width, self.scissorsLabel.bounds.size.height)];
-//    confirmationIcon.image = [[UIImage imageNamed:@"confirmationTick"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//    confirmationIcon.tintColor = [UIColor greenColor];
-//    [self.scissorsLabel addSubview:confirmationIcon];
-//    
-//    confirmationIcon.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *finalConfirmTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didConfirmScissors)];
-//    [confirmationIcon addGestureRecognizer:finalConfirmTap];
-//}
-
 
 /*
 #pragma mark - Navigation
