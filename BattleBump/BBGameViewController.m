@@ -22,6 +22,7 @@
 @property (strong, nonatomic) UIImageView *scissorsConfirmationIcon;
 @property (weak, nonatomic) IBOutlet UILabel *currentPlayGameLabel;
 @property (strong, nonatomic) GameLogicManager *gameLogicManager;
+@property (weak, nonatomic) IBOutlet UILabel *giantMoveLabel;
 
 @end
 
@@ -70,13 +71,31 @@
         }
         
         //BIG ICON OF self.gameLogicManager.myConfirmedMove
-        [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
-            UILabel *giantMoveLabel = [[UILabel alloc] initWithFrame:self.progressRing.frame];
-            giantMoveLabel.text = self.gameLogicManager.myConfirmedMove;
-        }];
+        [self drawGiantMoveLabel];
         
     }];
     // completion block also needs:  reset values and call setNeedsDisplay on mainQueue
+}
+
+-(void)drawGiantMoveLabel
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
+        NSUInteger i = self.gameLogicManager.myConfirmedMove.length;
+        switch (i) {
+            case 4:
+                self.giantMoveLabel.text = @"👊🏽";
+                break;
+            case 5:
+                self.giantMoveLabel.text = @"✋🏽";
+                break;
+            case 8:
+                self.giantMoveLabel.text = @"✌🏽";
+                break;
+            default:
+                break;
+        }
+        [self.giantMoveLabel setFont:[self.giantMoveLabel.font fontWithSize:200]];
+    }];
 }
 
 -(void)configureViews
