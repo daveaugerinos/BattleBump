@@ -91,7 +91,6 @@
                                 <state key="normal" title="Join"/>
                                 <connections>
                                     <action selector="joinButtonPressed:" destination="zyP-Ou-JCF" eventType="touchUpInside" id="M6G-t1-bdo"/>
-                                    <action selector="shareButtonPressed:" destination="zyP-Ou-JCF" eventType="touchUpInside" id="aXI-aM-Ac9"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Invitees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FlT-td-wJH">

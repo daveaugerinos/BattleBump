@@ -11,9 +11,9 @@ import UIKit
 class Invitee: NSObject {
 
     let player: Player
-    let game: Game?
+    let game: Game
     
-    init(player: Player, game:Game?) {
+    init(player: Player, game:Game) {
         
         self.player = player;
         self.game = game;

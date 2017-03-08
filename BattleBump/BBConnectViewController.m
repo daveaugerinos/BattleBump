@@ -43,13 +43,6 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
 #pragma mark - Communication -
 
 -(void)connectedDevicesChangedWithManager:(BBConnectServiceManager *)manager connectedDevices:(NSArray<NSString *> *)connectedDevices {
@@ -64,7 +57,7 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 }
 
 
--(void)receivedPlayWithManager:(BBConnectServiceManager *)manager play:(NSString *)play {
+-(void)receivedInviteeWithManager:(BBConnectServiceManager *)manager invitee:(Invitee * _Nonnull)invitee {
 
     [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
     
@@ -99,13 +92,48 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 
 
 
-#pragma mark - Actions -
+#pragma mark - IBActions methods -
 
 - (IBAction)joinButtonPressed:(UIButton *)sender {
+    
+    // if valid advertise or invite
+    // populate collection view
+    
+    NSString *playerName = self.playerNameTextField.text;
+    NSString *playerEmoji = self.playerEmojiTextField.text;
+    NSString *gameName = self.gameNameTextField.text;
+    NSString *gameStakes = self.gameStakesTextField.text;
+    
+    // Check for valid player name
+    // Check for valid emoji
+    // Check for valid game name
+    // Check for valid game stakes
+    
+    Player *player = [[Player alloc] initWithName:playerName emoji:playerEmoji];
+    Game *game = [[Game alloc] initWithName:gameName stakes:gameStakes];
+    Invitee *invitee = [[Invitee alloc]initWithPlayer:player game:game];
+    
+    [self.connectServiceManager joinWithInvitee:invitee];
+    [self.connectServiceManager sendWithInvitee:invitee];
+}
+
+
+- (IBAction)startGamePressed:(UIButton *)sender {
 
 }
 
-- (IBAction)startGamePressed:(UIButton *)sender {
+
+#pragma mark - UITextFieldDelegate methods -
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self.view endEditing:YES];
 }
 
 
@@ -127,6 +155,5 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     
     return initialArray;
 }
-
 
 @end

@@ -11,51 +11,75 @@ import MultipeerConnectivity
 
 @objc protocol BBConnectServiceManagerDelegate {
     
-    func connectedDevicesChanged(manager : BBConnectServiceManager, connectedDevices: [String])
-    func receivedPlay(manager : BBConnectServiceManager, play: String)
+    func connectedDevicesChanged(manager: BBConnectServiceManager, connectedDevices: [String])
+    func receivedInvitee(manager: BBConnectServiceManager, invitee: Invitee)
 }
 
 
 @objc class BBConnectServiceManager: NSObject {
     
-    private let ConnectServiceManagerType = "BattleBumpRPS"
-    private let myPeerID = MCPeerID(displayName: UIDevice.current.name)
-    private let serviceAdvertiser: MCNearbyServiceAdvertiser
-    private let serviceBrowser: MCNearbyServiceBrowser
+    private let ConnectServiceManagerType = "BBRPS-Game"
+    private var peerID: MCPeerID?
+    private var serviceAdvertiser: MCNearbyServiceAdvertiser?
+    private var serviceBrowser: MCNearbyServiceBrowser?
     var delegate: BBConnectServiceManagerDelegate?
     
     override init() {
         
-        self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: ConnectServiceManagerType)
-        self.serviceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: ConnectServiceManagerType)
+        self.peerID = nil
+        self.serviceAdvertiser = nil
+        self.serviceBrowser = nil
         super.init()
-        self.serviceAdvertiser.delegate = self
-        self.serviceAdvertiser.startAdvertisingPeer()
-        self.serviceBrowser.delegate = self
-        self.serviceBrowser.startBrowsingForPeers()
     }
     
     deinit {
         
-        self.serviceAdvertiser.startAdvertisingPeer()
-        self.serviceBrowser.stopBrowsingForPeers()
+        serviceAdvertiser?.startAdvertisingPeer()
+        serviceBrowser?.stopBrowsingForPeers()
     }
     
-    lazy var session : MCSession = {
-        let session = MCSession(peer: self.myPeerID, securityIdentity: nil, encryptionPreference: .required)
-        session.delegate = self
-        return session
+    
+    lazy var session: MCSession? = {
+        
+        if let peerID = self.peerID {
+        
+            let session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .required)
+            session.delegate = self
+            return session
+        }
+        
+        return nil
     }()
     
-    func send(play: String) {
+    
+    @objc public func join(invitee: Invitee) {
         
-        print("sendPlay: \(play) to \(session.connectedPeers.count) peers")
+        peerID = MCPeerID(displayName: invitee.player.name);
         
-        if session.connectedPeers.count > 0 {
+        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: peerID!, discoveryInfo: nil, serviceType: ConnectServiceManagerType)
+        serviceBrowser = MCNearbyServiceBrowser(peer: peerID!, serviceType: ConnectServiceManagerType)
+        
+        serviceAdvertiser?.delegate = self
+        serviceAdvertiser?.startAdvertisingPeer()
+        
+        serviceBrowser?.delegate = self
+        serviceBrowser?.startBrowsingForPeers()
+    }
+    
+    
+    @objc public func send(invitee: Invitee) {
+        
+        print("sendInvitee: \(invitee.player.name) and \(invitee.game.name) to \(session?.connectedPeers.count) peers")
+        
+        if session!.connectedPeers.count > 0 {
             
             do {
                 
-                try self.session.send(play.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
+                let dictionary = ["playerName" : invitee.player.name, "playerEmoji" : invitee.player.emoji, "gameName" : invitee.game.name, "gameStakes" : invitee.game.stakes]
+                
+                let myData: Data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+                
+                try self.session?.send(myData, toPeers: session!.connectedPeers, with: .reliable)
             }
                 
             catch let error {
@@ -92,7 +116,7 @@ extension BBConnectServiceManager: MCNearbyServiceBrowserDelegate {
         
         print("foundPeer: \(peerID)")
         print("invitePeer: \(peerID)")
-        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
+        browser.invitePeer(peerID, to: self.session!, withContext: nil, timeout: 10)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -113,8 +137,21 @@ extension BBConnectServiceManager : MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         
         print("%@", "didReceiveData: \(data)")
-        let str = String(data: data, encoding: .utf8)!
-        self.delegate?.receivedPlay(manager: self, play: str)
+        
+        let dictionary: Dictionary? = NSKeyedUnarchiver.unarchiveObject(with: data) as? [String : String]
+        
+        if let dictionary = dictionary, let playerName = dictionary["playerName"], let playerEmoji = dictionary["playerEmoji"], let gameName = dictionary["gameName"], let gameStakes = dictionary["gameStakes"] {
+            
+            let player = Player(name: playerName, emoji: playerEmoji)
+            let game = Game(name: gameName, stakes: gameStakes)
+            let invitee = Invitee(player: player, game: game)
+            self.delegate?.receivedInvitee(manager: self, invitee: invitee)
+        }
+        
+        else {
+            
+            print("Error in didReceiveData")
+        }
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
