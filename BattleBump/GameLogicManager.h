@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic) NSString *myConfirmedMove;
 @property (strong, nonatomic) NSString *theirConfirmedMove;
-@property (nonatomic) BOOL *isGameOn;
+@property (nonatomic) BOOL isGameOn;
 
 
 -(Move *)compareMovesAndReturnWinner;
