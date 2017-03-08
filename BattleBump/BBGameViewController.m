@@ -106,7 +106,7 @@
     self.rockConfirmationIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.rockLabel.bounds.origin.x, self.rockLabel.bounds.origin.y, self.rockLabel.bounds.size.width, self.rockLabel.bounds.size.height)];
     self.rockConfirmationIcon.image = [[UIImage imageNamed:@"confirmationTick"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.rockConfirmationIcon.tintColor = [UIColor greenColor];
-    self.rockConfirmationIcon.alpha = 1.0;
+    self.rockConfirmationIcon.alpha = 0.5;
     [self.rockLabel addSubview:self.rockConfirmationIcon];
     
     //hide other confirmations
@@ -124,7 +124,7 @@
     self.paperConfirmationIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.paperLabel.bounds.origin.x, self.paperLabel.bounds.origin.y, self.paperLabel.bounds.size.width, self.paperLabel.bounds.size.height)];
     self.paperConfirmationIcon.image = [[UIImage imageNamed:@"confirmationTick"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.paperConfirmationIcon.tintColor = [UIColor greenColor];
-    self.paperConfirmationIcon.alpha = 1.0;
+    self.paperConfirmationIcon.alpha = 0.5;
     [self.paperLabel addSubview:self.paperConfirmationIcon];
     
     //hide other confirmations
@@ -140,7 +140,7 @@
     self.scissorsConfirmationIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.scissorsLabel.bounds.origin.x, self.scissorsLabel.bounds.origin.y, self.scissorsLabel.bounds.size.width, self.scissorsLabel.bounds.size.height)];
     self.scissorsConfirmationIcon.image = [[UIImage imageNamed:@"confirmationTick"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.scissorsConfirmationIcon.tintColor = [UIColor greenColor];
-    self.scissorsConfirmationIcon.alpha = 1.0;
+    self.scissorsConfirmationIcon.alpha = 0.5;
     [self.scissorsLabel addSubview:self.scissorsConfirmationIcon];
     
     
