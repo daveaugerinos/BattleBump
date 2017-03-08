@@ -172,11 +172,19 @@
                                     <outlet property="delegate" destination="zyP-Ou-JCF" id="pYm-fb-z51"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ConnectTo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="396-QT-f3T">
+                                <rect key="frame" x="207" y="278" width="152" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="chooseInviteesLabel" destination="FlT-td-wJH" id="mHB-Iv-AOM"/>
+                        <outlet property="connectedToLabel" destination="396-QT-f3T" id="HR6-1C-8Fn"/>
                         <outlet property="gameNameLabel" destination="vfr-vm-JdC" id="ZBE-bi-7pX"/>
                         <outlet property="gameNameTextField" destination="bhi-fU-llY" id="Hac-fl-raA"/>
                         <outlet property="gameStakesLabel" destination="edO-TE-hdV" id="0iu-IH-8oP"/>

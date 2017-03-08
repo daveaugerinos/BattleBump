@@ -25,6 +25,9 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *inviteeCollectionView;
 @property (strong, nonatomic) NSMutableArray <Invitee *> *invitees;
 
+// Testing
+@property (weak, nonatomic) IBOutlet UILabel *connectedToLabel;
+
 @end
 
 @implementation BBConnectViewController
@@ -51,7 +54,7 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 
         if(connectedDevices) {
 
-//            self.connectedLabel.text = [connectedDevices firstObject];
+            self.connectedToLabel.text = [connectedDevices firstObject];
         }
     }];
 }
@@ -121,6 +124,7 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 
 - (IBAction)startGamePressed:(UIButton *)sender {
 
+    NSLog(@"Start Game!\n");
 }
 
 
