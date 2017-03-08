@@ -140,6 +140,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentPlayGameLabel" destination="9QW-rL-RJG" id="mO4-Rq-xhs"/>
                         <outlet property="paperLabel" destination="pSi-K7-M4f" id="4aQ-iE-Pst"/>
                         <outlet property="progressRing" destination="yFo-fR-xpo" id="bTg-pz-gBR"/>
                         <outlet property="rockLabel" destination="3Wz-ga-G3k" id="40o-3q-5az"/>

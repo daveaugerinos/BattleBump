@@ -90,7 +90,7 @@ class UICircularProgressRingLayer: CAShapeLayer {
     @NSManaged var decimalPlaces: Int
     
     var animationDuration: TimeInterval = 5.0
-    var animationStyle: String = kCAMediaTimingFunctionEaseInEaseOut
+    var animationStyle: String = kCAMediaTimingFunctionEaseIn
     var animated = false
     
     // The value label which draws the text for the current value
