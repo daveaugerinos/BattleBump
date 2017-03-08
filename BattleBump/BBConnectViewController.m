@@ -117,6 +117,8 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     Game *game = [[Game alloc] initWithName:gameName stakes:gameStakes];
     Invitee *invitee = [[Invitee alloc]initWithPlayer:player game:game];
     
+    NSLog(@"joinButton Invitee %@", [invitee description]);
+    
     [self.connectServiceManager joinWithInvitee:invitee];
     [self.connectServiceManager sendWithInvitee:invitee];
 }

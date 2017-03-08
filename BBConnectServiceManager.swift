@@ -22,6 +22,7 @@ import MultipeerConnectivity
     private var peerID: MCPeerID?
     private var serviceAdvertiser: MCNearbyServiceAdvertiser?
     private var serviceBrowser: MCNearbyServiceBrowser?
+    fileprivate var mySession: MCSession?
     var delegate: BBConnectServiceManagerDelegate?
     
     override init() {
@@ -39,17 +40,17 @@ import MultipeerConnectivity
     }
     
     
-    lazy var session: MCSession? = {
-        
-        if let peerID = self.peerID {
-        
-            let session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .required)
-            session.delegate = self
-            return session
-        }
-        
-        return nil
-    }()
+//    lazy var session: MCSession = {
+//        
+//        //if let peerID = self.peerID {
+//        
+//            let session = MCSession(peer: self.peerID!, securityIdentity: nil, encryptionPreference: .required)
+//            session.delegate = self
+//            return session
+//        //}
+//        
+//        //return nil
+//    }()
     
     
     @objc public func join(invitee: Invitee) {
@@ -64,14 +65,17 @@ import MultipeerConnectivity
         
         serviceBrowser?.delegate = self
         serviceBrowser?.startBrowsingForPeers()
+        
+        mySession = MCSession(peer: self.peerID!, securityIdentity: nil, encryptionPreference: .required)
+        mySession?.delegate = self
     }
     
     
     @objc public func send(invitee: Invitee) {
         
-        print("sendInvitee: \(invitee.player.name) and \(invitee.game.name) to \(session?.connectedPeers.count) peers")
+        print("sendInvitee: \(invitee.player.name) and \(invitee.game.name) to \(mySession?.connectedPeers.count) peers")
         
-        if session!.connectedPeers.count > 0 {
+        if mySession!.connectedPeers.count > 0 {
             
             do {
                 
@@ -79,7 +83,7 @@ import MultipeerConnectivity
                 
                 let myData: Data = NSKeyedArchiver.archivedData(withRootObject: dictionary)
                 
-                try self.session?.send(myData, toPeers: session!.connectedPeers, with: .reliable)
+                try mySession?.send(myData, toPeers: mySession!.connectedPeers, with: .reliable)
             }
                 
             catch let error {
@@ -101,7 +105,7 @@ extension BBConnectServiceManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         
         print("didReceiveInvitationFromPeer: \(peerID)")
-        invitationHandler(true, self.session)
+        invitationHandler(true, mySession)
     }
 }
 
@@ -116,7 +120,7 @@ extension BBConnectServiceManager: MCNearbyServiceBrowserDelegate {
         
         print("foundPeer: \(peerID)")
         print("invitePeer: \(peerID)")
-        browser.invitePeer(peerID, to: self.session!, withContext: nil, timeout: 10)
+        browser.invitePeer(peerID, to: mySession!, withContext: nil, timeout: 10)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -145,6 +149,9 @@ extension BBConnectServiceManager : MCSessionDelegate {
             let player = Player(name: playerName, emoji: playerEmoji)
             let game = Game(name: gameName, stakes: gameStakes)
             let invitee = Invitee(player: player, game: game)
+            
+            print("didReceive Invitee + \(invitee)")
+            
             self.delegate?.receivedInvitee(manager: self, invitee: invitee)
         }
         
