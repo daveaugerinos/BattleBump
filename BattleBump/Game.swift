@@ -12,11 +12,13 @@ class Game: NSObject {
 
     let name: String
     let stakes: String
+    var state: String
     
     init(name: String, stakes:String) {
         
         self.name = name;
         self.stakes = stakes;
+        self.state = "init"
         super.init()
     }
 }
