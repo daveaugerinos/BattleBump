@@ -14,11 +14,11 @@ class Player: NSObject {
     let emoji: String
     var move: String
 
-    init(name: String, emoji:String) {
+    init(name: String, emoji:String, move: String) {
         
-        self.name = name;
-        self.emoji = emoji;
-        self.move = "init"
+        self.name = name
+        self.emoji = emoji
+        self.move = move
         super.init()
     }
 }

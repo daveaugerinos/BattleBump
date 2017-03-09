@@ -15,8 +15,8 @@ class Invitee: NSObject {
     
     init(player: Player, game:Game) {
         
-        self.player = player;
-        self.game = game;
+        self.player = player
+        self.game = game
         super.init()
     }
 }

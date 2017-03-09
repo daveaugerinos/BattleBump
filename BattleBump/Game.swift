@@ -14,11 +14,11 @@ class Game: NSObject {
     let stakes: String
     var state: String
     
-    init(name: String, stakes:String) {
+    init(name: String, stakes:String, state: String) {
         
-        self.name = name;
-        self.stakes = stakes;
-        self.state = "init"
+        self.name = name
+        self.stakes = stakes
+        self.state = state
         super.init()
     }
 }
