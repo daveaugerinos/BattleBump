@@ -15,7 +15,8 @@
 @property (strong, nonatomic) NSString *theirConfirmedMove;
 @property (nonatomic) BOOL isGameOn;
 
-
--(Move *)compareMovesAndReturnWinner;
+-(void)pickRandomMove;
+-(void)readyForNextRound;
+-(NSString *)compareMovesAndPickWinner;
 
 @end
