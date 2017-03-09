@@ -49,31 +49,6 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 }
 
 
-#pragma mark - Communication -
-
--(void)connectedDevicesChangedWithManager:(BBConnectServiceManager *)manager connectedDevices:(NSArray<NSString *> *)connectedDevices {
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
-
-        if(connectedDevices) {
-
-            self.connectedToLabel.text = [connectedDevices firstObject];
-        }
-    }];
-}
-
-
--(void)receivedInviteeWithManager:(BBConnectServiceManager *)manager invitee:(Invitee * _Nonnull)invitee {
-
-    [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
-    
-        [self.invitees addObject:invitee];
-        NSLog(@"Invitee Array count: %lu", (unsigned long)[self.invitees count]);
-        [self.inviteeCollectionView reloadData];
-    }];
-}
-
-
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -126,6 +101,11 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
 {
     NSLog(@"I'm received some data from %@!!!", peerID.displayName);
+    
+    NSString *message =
+    [[NSString alloc] initWithData:data
+                          encoding:NSUTF8StringEncoding];
+    NSLog(@"%@", message);
 }
 
 // MCSession delegate callback when we start to receive a resource from a peer in a given session
@@ -168,7 +148,12 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 
 -(void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary<NSString *,NSString *> *)info {
     
-    [browser invitePeer:peerID toSession:self.mySession withContext:nil timeout:10];
+    self.mySession = [[MCSession alloc] initWithPeer:self.myPeerID
+                                    securityIdentity:nil
+                                encryptionPreference:MCEncryptionNone];
+    self.mySession.delegate = self;
+    
+    [browser invitePeer:peerID toSession:self.mySession withContext:nil timeout:60];
 }
 
 -(void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID {
@@ -181,11 +166,7 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 
 - (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void(^)(BOOL accept, MCSession *session))invitationHandler
 {
-    self.mySession = [[MCSession alloc] initWithPeer:self.myPeerID
-                                        securityIdentity:nil
-                                    encryptionPreference:MCEncryptionNone];
-    self.mySession.delegate = self;
-    
+
     invitationHandler(YES, self.mySession);
 }
 
@@ -215,9 +196,19 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 }
 
 
-- (IBAction)startGamePressed:(UIButton *)sender {
+- (IBAction)startGameButtonPressed:(UIButton *)sender {
 
     NSLog(@"Start Game!\n");
+
+    NSString *message = @"Hello, World!";
+    NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    if (![self.mySession sendData:data
+                          toPeers:self.mySession.connectedPeers
+                         withMode:MCSessionSendDataReliable
+                            error:&error]) {
+        NSLog(@"[Error] %@", error);
+    }
 }
 
 

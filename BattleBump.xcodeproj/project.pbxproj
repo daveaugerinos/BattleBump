@@ -25,7 +25,6 @@
 		A2A182511E6E0613006F5DA8 /* Connect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A182501E6E0613006F5DA8 /* Connect.storyboard */; };
 		A2A182531E6E061E006F5DA8 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A182521E6E061E006F5DA8 /* Game.storyboard */; };
 		A2A182561E6E127B006F5DA8 /* BBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A182551E6E127B006F5DA8 /* BBRootViewController.m */; };
-		A2BD05361E6E50A200AE31D3 /* BBConnectServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD05351E6E50A200AE31D3 /* BBConnectServiceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +66,6 @@
 		A2A182541E6E127B006F5DA8 /* BBRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBRootViewController.h; sourceTree = "<group>"; };
 		A2A182551E6E127B006F5DA8 /* BBRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBRootViewController.m; sourceTree = "<group>"; };
 		A2BD05341E6E50A200AE31D3 /* BattleBump-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BattleBump-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		A2BD05351E6E50A200AE31D3 /* BBConnectServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BBConnectServiceManager.swift; path = ../BBConnectServiceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +163,6 @@
 				A25D7B1F1E6F74050090BC65 /* Invitee.swift */,
 				A260C35A1E6DF1A600F5F84F /* AppDelegate.h */,
 				A260C35B1E6DF1A600F5F84F /* AppDelegate.m */,
-				A2BD05351E6E50A200AE31D3 /* BBConnectServiceManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -313,7 +310,6 @@
 				A25D7B1B1E6F60B70090BC65 /* Game.swift in Sources */,
 				A22C50DA1E6E163100A476F0 /* BBGameViewController.m in Sources */,
 				A25D7B1E1E6F66EF0090BC65 /* BBConnectCollectionViewCell.m in Sources */,
-				A2BD05361E6E50A200AE31D3 /* BBConnectServiceManager.swift in Sources */,
 				A260C3591E6DF1A600F5F84F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
