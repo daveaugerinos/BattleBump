@@ -104,20 +104,12 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     NSLog(@"Received data from %@", peerID.displayName);
     
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    unarchiver.requiresSecureCoding = YES;
+    unarchiver.requiresSecureCoding = NO;
     NSDictionary *dictionary = [unarchiver decodeObject];
-    [unarchiver finishDecoding];;
+    [unarchiver finishDecoding];
     
-    NSString *playerName = [dictionary objectForKey:@"playerName"];
-    NSString *playerEmoji = [dictionary objectForKey:@"playerEmoji"];
-    NSString *playerMove = [dictionary objectForKey:@"playerMove"];
-    NSString *gameName = [dictionary objectForKey:@"gameName"];
-    NSString *gameStakes = [dictionary objectForKey:@"gameStakes"];
-    NSString *gameState = [dictionary objectForKey:@"gameState"];
     
-    Player *player = [[Player alloc] initWithName:playerName emoji:playerEmoji move:playerMove];
-    Game *game = [[Game alloc] initWithName:gameName stakes:gameStakes state:gameState];
-    Invitee *invitee = [[Invitee alloc] initWithPlayer:player game:game];
+    Invitee *invitee = [dictionary objectForKey:@"invitee"];
         
     [self receivedInviteeMessage:(Invitee *) invitee];
 }
@@ -229,11 +221,9 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 
     NSLog(@"Start Game!\n");
     
-    NSDictionary *dictionary = [[NSDictionary alloc] init];
-    
-    [dictionary setValue:self.me forKey:self.me.player.name];
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:self.me, @"invitee", nil];
 
-    id <NSSecureCoding> object = dictionary;
+    id <NSCoding> object = dictionary;
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object];
     NSError *error = nil;
     if (![self.mySession sendData:data
