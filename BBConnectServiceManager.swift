@@ -18,11 +18,11 @@ import MultipeerConnectivity
 
 @objc class BBConnectServiceManager: NSObject {
     
-    private let ConnectServiceManagerType = "BBRPS-Game"
-    private var peerID: MCPeerID?
-    private var serviceAdvertiser: MCNearbyServiceAdvertiser?
-    private var serviceBrowser: MCNearbyServiceBrowser?
-    fileprivate var mySession: MCSession?
+    let ConnectServiceManagerType = "BBRPS-Game"
+    var peerID: MCPeerID?
+    var serviceAdvertiser: MCNearbyServiceAdvertiser?
+    var serviceBrowser: MCNearbyServiceBrowser?
+    var mySession: MCSession?
     var delegate: BBConnectServiceManagerDelegate?
     
     override init() {
@@ -58,16 +58,16 @@ import MultipeerConnectivity
         peerID = MCPeerID(displayName: invitee.player.name);
         
         serviceAdvertiser = MCNearbyServiceAdvertiser(peer: peerID!, discoveryInfo: nil, serviceType: ConnectServiceManagerType)
-        serviceBrowser = MCNearbyServiceBrowser(peer: peerID!, serviceType: ConnectServiceManagerType)
-        
         serviceAdvertiser?.delegate = self
         serviceAdvertiser?.startAdvertisingPeer()
         
+        serviceBrowser = MCNearbyServiceBrowser(peer: peerID!, serviceType: ConnectServiceManagerType)
         serviceBrowser?.delegate = self
         serviceBrowser?.startBrowsingForPeers()
         
-        mySession = MCSession(peer: self.peerID!, securityIdentity: nil, encryptionPreference: .required)
+        mySession = MCSession(peer: self.peerID!, securityIdentity: nil, encryptionPreference: .none)
         mySession?.delegate = self
+        
     }
     
     
