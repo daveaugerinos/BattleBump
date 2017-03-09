@@ -45,7 +45,7 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.invitees = [[self prepareDataSource] mutableCopy];
+    self.invitees = [[NSMutableArray alloc] init];
     NSLog(@"Invitee Array count: %lu", (unsigned long)[self.invitees count]);
 }
 
@@ -103,13 +103,9 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 {
     NSLog(@"Received data from %@", peerID.displayName);
     
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    unarchiver.requiresSecureCoding = NO;
-    NSDictionary *dictionary = [unarchiver decodeObject];
-    [unarchiver finishDecoding];
+    NSDictionary *dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
-    
-    Invitee *invitee = [dictionary objectForKey:@"invitee"];
+    Invitee *invitee = dictionary[@"invitee"];
         
     [self receivedInviteeMessage:(Invitee *) invitee];
 }
@@ -118,10 +114,11 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 -(void)receivedInviteeMessage:(Invitee *) invitee {
     
     for(Invitee *myInvitee in self.invitees) {
-        
+    
         if (! [myInvitee.player.name isEqualToString:invitee.player.name]) {
             
             [self.invitees addObject:invitee];
+            NSLog(@"Count of invitees: %lu", [self.invitees count]);
         }
     }
     
@@ -174,7 +171,7 @@ static NSString * const reuseIdentifier = @"inviteeCell";
                                 encryptionPreference:MCEncryptionNone];
     self.mySession.delegate = self;
     
-    [browser invitePeer:peerID toSession:self.mySession withContext:nil timeout:60];
+    [browser invitePeer:peerID toSession:self.mySession withContext:nil timeout:10];
 }
 
 -(void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID {
@@ -221,10 +218,9 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 
     NSLog(@"Start Game!\n");
     
-    NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:self.me, @"invitee", nil];
-
-    id <NSCoding> object = dictionary;
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object];
+    NSDictionary *dictionary = @{@"invitee": self.me};
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
     NSError *error = nil;
     if (![self.mySession sendData:data
                         toPeers:self.mySession.connectedPeers
