@@ -206,7 +206,6 @@
     //update my views
     [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
         self.theirLastMoveLabel.text = [NSString stringWithFormat:@"%@ played: %@", self.opponent.player.name, self.opponent.player.move];
-        self.gameLogicManager.roundsPlayedNumber++;
         self.resultLabel.text = [self.gameLogicManager generateResultsLabelWithMoves];
         self.winsAndRoundsLabel.text = [NSString stringWithFormat:@"%d / %d", self.gameLogicManager.myWinsNumber, self.gameLogicManager.roundsPlayedNumber];
     }];

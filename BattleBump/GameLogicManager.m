@@ -39,29 +39,35 @@
         
         if ([self.myConfirmedMove isEqualToString:@"Rock"] && [self.theirConfirmedMove isEqualToString:@"Paper"]) {
             computedString = [NSString stringWithFormat:@"%@ beats %@", self.theirConfirmedMove, self.myConfirmedMove];
+            self.roundsPlayedNumber++;
         }
         
         if ([self.myConfirmedMove isEqualToString:@"Rock"] && [self.theirConfirmedMove isEqualToString:@"Scissors"]) {
             computedString = [NSString stringWithFormat:@"%@ beats %@", self.myConfirmedMove, self.theirConfirmedMove];
             self.myWinsNumber++;
+            self.roundsPlayedNumber++;
         }
         
         if ([self.myConfirmedMove isEqualToString:@"Scissors"] && [self.theirConfirmedMove isEqualToString:@"Paper"]) {
             computedString = [NSString stringWithFormat:@"%@ beats %@", self.myConfirmedMove, self.theirConfirmedMove];
             self.myWinsNumber++;
+            self.roundsPlayedNumber++;
         }
         
         if ([self.myConfirmedMove isEqualToString:@"Scissors"] && [self.theirConfirmedMove isEqualToString:@"Rock"]) {
             computedString = [NSString stringWithFormat:@"%@ beats %@", self.theirConfirmedMove, self.myConfirmedMove];
+            self.roundsPlayedNumber++;
         }
         
         if ([self.myConfirmedMove isEqualToString:@"Paper"] && [self.theirConfirmedMove isEqualToString:@"Scissors"]) {
             computedString = [NSString stringWithFormat:@"%@ beats %@", self.theirConfirmedMove, self.myConfirmedMove];
+            self.roundsPlayedNumber++;
         }
         
         if ([self.myConfirmedMove isEqualToString:@"Paper"] && [self.theirConfirmedMove isEqualToString:@"Rock"]) {
             computedString = [NSString stringWithFormat:@"%@ beats %@", self.myConfirmedMove, self.theirConfirmedMove];
             self.myWinsNumber++;
+            self.roundsPlayedNumber++;
         }
     }
     return computedString;
