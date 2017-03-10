@@ -8,6 +8,7 @@
 
 #import "BBConnectViewController.h"
 #import "BBConnectCollectionViewCell.h"
+#import "BBGameViewController.h"
 #import "BattleBump-Swift.h"
 
 @interface BBConnectViewController ()
@@ -24,15 +25,13 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *inviteeCollectionView;
 @property (strong, nonatomic) NSMutableArray <Invitee *> *invitees;
 @property (strong, nonatomic) Invitee *me;
-
-@property (strong, nonatomic) MCPeerID *myPeerID;
+//@property (strong, nonatomic) MCPeerID *myPeerID;
 @property (strong, nonatomic) MCNearbyServiceAdvertiser *myAdvertiser;
 @property (strong, nonatomic) MCNearbyServiceBrowser *myBrowser;
-@property (strong, nonatomic) MCSession *mySession;
-//@property (strong, nonatomic) MCBrowserViewController *browserViewController;
-
-// Testing
+//@property (strong, nonatomic) MCSession *mySession;
 @property (weak, nonatomic) IBOutlet UILabel *connectedToLabel;
+
+@property (strong, nonatomic) NSMutableArray *playerInviteesArray;
 
 @end
 
@@ -46,7 +45,7 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.invitees = [[NSMutableArray alloc] init];
-    NSLog(@"Invitee Array count: %lu", (unsigned long)[self.invitees count]);
+    self.playerInviteesArray = [[NSMutableArray alloc] init];
 }
 
 
@@ -96,6 +95,19 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
 {
     NSLog(@"Peer [%@] changed state to %@", peerID.displayName, [self stringForPeerConnectionState:state]);
+
+    if([[self stringForPeerConnectionState:state] isEqualToString:@"Connected"]) {
+
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+
+            self.connectedToLabel.text = peerID.displayName;
+        }];
+    }
+
+    else {
+
+         self.connectedToLabel.text = @"Not Connected";
+    }
 }
 
 // MCSession Delegate callback when receiving data from a peer in a given session
@@ -125,12 +137,12 @@ static NSString * const reuseIdentifier = @"inviteeCell";
             if (! [myInvitee.player.name isEqualToString:invitee.player.name]) {
 
                 [self.invitees addObject:invitee];
-                NSLog(@"Count %lu", [self.invitees count]);
             }
         }
     }
-    
-    [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
+
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+
         [self.inviteeCollectionView reloadData];
     }];
 }
@@ -224,10 +236,10 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 }
 
 
-- (IBAction)startGameButtonPressed:(UIButton *)sender {
+- (IBAction)sendInviteButtonPressed:(UIButton *)sender {
 
     NSLog(@"Start Game!\n");
-    
+
     NSDictionary *dictionary = @{ @"invitee": self.me };
 
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
@@ -240,6 +252,20 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     }
 }
 
+
+- (IBAction)startGameButtonPressed:(UIButton *)sender {
+
+    [self performSegueWithIdentifier:@"startGame" sender:sender];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    BBGameViewController *bbgvc = segue.destinationViewController;
+    bbgvc.playerInviteesArray = [self.playerInviteesArray mutableCopy];
+
+    //in desperate need of refactoring
+    bbgvc.bbcvc = self;
+}
 
 #pragma mark - UITextFieldDelegate methods -
 
@@ -254,24 +280,18 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     [self.view endEditing:YES];
 }
 
+# pragma mark - UICollectionViewDelegate methods -
 
-#pragma mark - Helper -
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BBConnectCollectionViewCell *selectedCell = (BBConnectCollectionViewCell *)[self.inviteeCollectionView cellForItemAtIndexPath:indexPath];
+    Invitee *selectedInvitee = selectedCell.invitee;
+    [self.playerInviteesArray addObject:self.me];
+    [self.playerInviteesArray addObject:selectedInvitee];
+    for (Invitee *invitee in self.playerInviteesArray) {
+        invitee.game.state = @"ready";
+    }
+}
 
-//- (NSArray *)prepareDataSource {
-//
-//    Player *player1 = [[Player alloc] initWithName:@"Callum" emoji:@"💂"];
-//    Player *player2 = [[Player alloc] initWithName:@"Dave" emoji:@"👨‍✈️"];
-//    Player *player3 = [[Player alloc] initWithName:@"Mystery Player" emoji:@"🕴"];
-//    Game *game1 = [[Game alloc] initWithName:@"BeerWarz" stakes:@"Loser buys beer"];
-//    Game *game2 = [[Game alloc] initWithName:@"Mysterious" stakes:@"is mystery"];
-//
-//    Invitee *invitee1 = [[Invitee alloc] initWithPlayer:player1 game:game1];
-//    Invitee *invitee2 = [[Invitee alloc] initWithPlayer:player2 game:game1];
-//    Invitee *invitee3 = [[Invitee alloc] initWithPlayer:player3 game:game2];
-//
-//    NSArray *initialArray = @[invitee1, invitee2, invitee3];
-//
-//    return initialArray;
-//}
 
 @end

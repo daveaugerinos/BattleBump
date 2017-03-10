@@ -2,7 +2,7 @@
 //  BBGameViewController.m
 //  BattleBump
 //
-//  Created by Dave Augerinos on 2017-03-06.
+//  Created by Dave Augerinos & Callum Davies on 2017-03-06.
 //  Copyright © 2017 Dave Augerinos. All rights reserved.
 //
 
@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentPlayGameLabel;
 @property (strong, nonatomic) GameLogicManager *gameLogicManager;
 @property (weak, nonatomic) IBOutlet UILabel *giantMoveLabel;
+@property (strong, nonatomic) Invitee *opponent;
+@property (strong, nonatomic) Invitee *me;
 
 @end
 
@@ -36,6 +38,14 @@
     self.gameLogicManager.isGameOn = YES;
     
     [self configureAndEnableViews];
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+
+    
+    self.opponent = self.playerInviteesArray[1];
+    self.currentPlayGameLabel.text = [NSString stringWithFormat:@"You are playing %@ for stakes: %@", self.opponent.player.name, self.opponent.game.stakes];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,8 +81,29 @@
         [self disableMoveChoice];
         
         [self.progressRing setProgressWithValue:5.0 animationDuration:0.1 completion:nil];
+        
+        //set round over
+        self.me.game.state = @"roundOver";
+        
+        //notify opponent
+        NSDictionary *dictionary = @{ @"invitee": self.me };
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
+        NSError *error = nil;
+        if (![self.bbcvc.mySession sendData:data
+                              toPeers:self.bbcvc.mySession.connectedPeers
+                             withMode:MCSessionSendDataReliable
+                                error:&error]) {
+            NSLog(@"[Error] %@", error);
+        }
+        
+        
+        
+        if ([self.opponent.game.state isEqualToString:@"roundOver"] && [self.me.game.state isEqualToString:@"roundOver"]) {
+//            [self roundConclusion];
+        }
+        
+        
     }];
-    // completion block also needs:  reset values and call setNeedsDisplay on mainQueue
 }
 
 -(void)drawGiantMoveLabel
@@ -136,7 +167,6 @@
     self.scissorsConfirmationIcon.alpha = 0.0;
     
     self.gameLogicManager.myConfirmedMove = @"Rock";
-//    NSLog(@"%@", self.gameLogicManager.myConfirmedMove);
 }
 
 -(void)didConfirmPaper
@@ -153,9 +183,7 @@
     self.rockConfirmationIcon.alpha = 0.0;
     self.scissorsConfirmationIcon.alpha = 0.0;
     
-    
     self.gameLogicManager.myConfirmedMove = @"Paper";
-//    NSLog(@"%@", self.gameLogicManager.myConfirmedMove);
 }
 
 -(void)didConfirmScissors
@@ -173,17 +201,17 @@
     self.paperConfirmationIcon.alpha = 0.0;
     
     self.gameLogicManager.myConfirmedMove = @"Scissors";
-//    NSLog(@"%@", self.gameLogicManager.myConfirmedMove);
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+-(void)roundConclusion
+{
+    //update move labels
+    //compare results
+        //update results label
+        //game state to ready
+        //interaction enabled
+}
+
+
 
 @end
