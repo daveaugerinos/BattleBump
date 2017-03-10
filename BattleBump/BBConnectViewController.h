@@ -11,7 +11,7 @@
 
 @interface BBConnectViewController : UIViewController <MCSessionDelegate, MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate,  UITextFieldDelegate, UICollectionViewDelegate>
 
-//@property (strong, nonatomic) MCPeerID *myPeerID;
+@property (strong, nonatomic) MCPeerID *myPeerID;
 @property (strong, nonatomic) MCSession *mySession;
 
 //SRS CODE SMELL BELOW, WE RAN OUT OF TIME - will refactor in future :(

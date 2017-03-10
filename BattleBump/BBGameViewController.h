@@ -13,6 +13,6 @@
 @interface BBGameViewController : UIViewController
 
 @property (strong, nonatomic) NSMutableArray *playerInviteesArray;
-@property (strong, nonatomic ) BBConnectViewController *bbcvc;
+@property (strong, nonatomic) BBConnectViewController *bbcvc;
 
 @end

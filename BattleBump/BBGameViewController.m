@@ -167,7 +167,6 @@
     self.scissorsConfirmationIcon.alpha = 0.0;
     
     self.gameLogicManager.myConfirmedMove = @"Rock";
-//    NSLog(@"%@", self.gameLogicManager.myConfirmedMove);
 }
 
 -(void)didConfirmPaper
@@ -184,9 +183,7 @@
     self.rockConfirmationIcon.alpha = 0.0;
     self.scissorsConfirmationIcon.alpha = 0.0;
     
-    
     self.gameLogicManager.myConfirmedMove = @"Paper";
-//    NSLog(@"%@", self.gameLogicManager.myConfirmedMove);
 }
 
 -(void)didConfirmScissors
@@ -204,11 +201,16 @@
     self.paperConfirmationIcon.alpha = 0.0;
     
     self.gameLogicManager.myConfirmedMove = @"Scissors";
-//    NSLog(@"%@", self.gameLogicManager.myConfirmedMove);
 }
 
-#pragma mark - Networking - 
-
+-(void)roundConclusion
+{
+    //update move labels
+    //compare results
+        //update results label
+        //game state to ready
+        //interaction enabled
+}
 
 
 
