@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *giantMoveLabel;
 @property (strong, nonatomic) Invitee *opponent;
 @property (strong, nonatomic) Invitee *me;
+@property (weak, nonatomic) IBOutlet UILabel *winsAndRoundsLabel;
 
 @end
 
@@ -37,6 +38,7 @@
     // Do any additional setup after loading the view.
 
     self.gameLogicManager = [[GameLogicManager alloc] init];
+    self.winsAndRoundsLabel.text = @"- / -";
 
     [self configureAndEnableViews];
 }
@@ -204,8 +206,9 @@
     //update my views
     [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
         self.theirLastMoveLabel.text = [NSString stringWithFormat:@"%@ played: %@", self.opponent.player.name, self.opponent.player.move];
-        
+        self.gameLogicManager.roundsPlayedNumber++;
         self.resultLabel.text = [self.gameLogicManager generateResultsLabelWithMoves];
+        self.winsAndRoundsLabel.text = [NSString stringWithFormat:@"%d / %d", self.gameLogicManager.myWinsNumber, self.gameLogicManager.roundsPlayedNumber];
     }];
     
     [self.networkManager send:self.me];

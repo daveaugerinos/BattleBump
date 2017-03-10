@@ -135,6 +135,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbH-vN-kdo">
+                                <rect key="frame" x="16" y="86" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -172,6 +179,7 @@
                         <outlet property="rockLabel" destination="3Wz-ga-G3k" id="40o-3q-5az"/>
                         <outlet property="scissorsLabel" destination="miJ-z8-sPv" id="vcu-az-eVi"/>
                         <outlet property="theirLastMoveLabel" destination="61y-Ok-IF2" id="WdN-1Z-iu9"/>
+                        <outlet property="winsAndRoundsLabel" destination="qbH-vN-kdo" id="fuk-yS-GMM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bI3-TJ-lB7" userLabel="First Responder" sceneMemberID="firstResponder"/>
