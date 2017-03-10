@@ -27,6 +27,7 @@
 		A2A182511E6E0613006F5DA8 /* Connect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A182501E6E0613006F5DA8 /* Connect.storyboard */; };
 		A2A182531E6E061E006F5DA8 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A182521E6E061E006F5DA8 /* Game.storyboard */; };
 		A2A182561E6E127B006F5DA8 /* BBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A182551E6E127B006F5DA8 /* BBRootViewController.m */; };
+		A2BDFEBE1E723A140098A967 /* BBNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A2BDFEBD1E723A140098A967 /* BBNetworkManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		A2A182541E6E127B006F5DA8 /* BBRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBRootViewController.h; sourceTree = "<group>"; };
 		A2A182551E6E127B006F5DA8 /* BBRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBRootViewController.m; sourceTree = "<group>"; };
 		A2BD05341E6E50A200AE31D3 /* BattleBump-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BattleBump-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		A2BDFEBC1E723A140098A967 /* BBNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBNetworkManager.h; path = ../BBNetworkManager.h; sourceTree = "<group>"; };
+		A2BDFEBD1E723A140098A967 /* BBNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBNetworkManager.m; path = ../BBNetworkManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +172,8 @@
 				A25D7B1F1E6F74050090BC65 /* Invitee.swift */,
 				3F9B86021E6F9BEE00C7AAE5 /* GameLogicManager.h */,
 				3F9B86031E6F9BEE00C7AAE5 /* GameLogicManager.m */,
+				A2BDFEBC1E723A140098A967 /* BBNetworkManager.h */,
+				A2BDFEBD1E723A140098A967 /* BBNetworkManager.m */,
 				3F9B86051E6FA4C700C7AAE5 /* Move.h */,
 				3F9B86061E6FA4C700C7AAE5 /* Move.m */,
 				A260C35A1E6DF1A600F5F84F /* AppDelegate.h */,
@@ -312,6 +317,7 @@
 				A25D7B201E6F74050090BC65 /* Invitee.swift in Sources */,
 				A25D7B191E6F60A50090BC65 /* Player.swift in Sources */,
 				A260C35C1E6DF1A600F5F84F /* AppDelegate.m in Sources */,
+				A2BDFEBE1E723A140098A967 /* BBNetworkManager.m in Sources */,
 				A22C50D71E6E162300A476F0 /* BBConnectViewController.m in Sources */,
 				A2A182561E6E127B006F5DA8 /* BBRootViewController.m in Sources */,
 				3F35265D1E6E4EF800D84F2C /* UICircularProgressRingLayer.swift in Sources */,

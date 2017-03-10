@@ -86,15 +86,15 @@
         self.me.game.state = @"roundOver";
         
         //notify opponent
-        NSDictionary *dictionary = @{ @"invitee": self.me };
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
-        NSError *error = nil;
-        if (![self.bbcvc.mySession sendData:data
-                              toPeers:self.bbcvc.mySession.connectedPeers
-                             withMode:MCSessionSendDataReliable
-                                error:&error]) {
-            NSLog(@"[Error] %@", error);
-        }
+//        NSDictionary *dictionary = @{ @"invitee": self.me };
+//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
+//        NSError *error = nil;
+//        if (![self.bbcvc.mySession sendData:data
+//                              toPeers:self.bbcvc.mySession.connectedPeers
+//                             withMode:MCSessionSendDataReliable
+//                                error:&error]) {
+//            NSLog(@"[Error] %@", error);
+//        }
         
         
         
