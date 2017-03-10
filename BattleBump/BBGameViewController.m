@@ -15,6 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UICircularProgressRingView *progressRing;
 @property (weak, nonatomic) IBOutlet UILabel *rockLabel;
+@property (weak, nonatomic) IBOutlet UILabel *theirLastMoveLabel;
+@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
 @property (strong, nonatomic) UIImageView *rockConfirmationIcon;
 @property (weak, nonatomic) IBOutlet UILabel *paperLabel;
 @property (strong, nonatomic) UIImageView *paperConfirmationIcon;
@@ -40,10 +42,8 @@
     [self configureAndEnableViews];
 }
 
--(void) viewWillAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
-
-    
     self.opponent = self.playerInviteesArray[1];
     self.currentPlayGameLabel.text = [NSString stringWithFormat:@"You are playing %@ for stakes: %@", self.opponent.player.name, self.opponent.game.stakes];
 }
@@ -86,22 +86,19 @@
         self.me.game.state = @"roundOver";
         
         //notify opponent
-        NSDictionary *dictionary = @{ @"invitee": self.me };
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
-        NSError *error = nil;
-        if (![self.bbcvc.mySession sendData:data
-                              toPeers:self.bbcvc.mySession.connectedPeers
-                             withMode:MCSessionSendDataReliable
-                                error:&error]) {
-            NSLog(@"[Error] %@", error);
-        }
-        
-        
-        
-        if ([self.opponent.game.state isEqualToString:@"roundOver"] && [self.me.game.state isEqualToString:@"roundOver"]) {
+//        NSDictionary *dictionary = @{ @"invitee": self.me };
+//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
+//        NSError *error = nil;
+//        if (![self.bbcvc.mySession sendData:data
+//                              toPeers:self.bbcvc.mySession.connectedPeers
+//                             withMode:MCSessionSendDataReliable
+//                                error:&error]) {
+//            NSLog(@"[Error] %@", error);
+//        }
+//        
+//        if ([self.opponent.game.state isEqualToString:@"roundOver"] && [self.me.game.state isEqualToString:@"roundOver"]) {
 //            [self roundConclusion];
-        }
-        
+//        }
         
     }];
 }
@@ -205,11 +202,14 @@
 
 -(void)roundConclusion
 {
-    //update move labels
-    //compare results
-        //update results label
-        //game state to ready
-        //interaction enabled
+//    update move labels
+//      sendData withstring: self.gameLogicManager.myConfirmedMove to Peers
+    
+    
+//    compare results
+    self.resultLabel.text = [self.gameLogicManager generateResultsLabelWithMoves];
+//        game state to ready
+//        interaction enabled
 }
 
 

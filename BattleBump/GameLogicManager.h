@@ -17,6 +17,6 @@
 
 -(void)pickRandomMove;
 -(void)readyForNextRound;
--(NSString *)compareMovesAndPickWinner;
+-(NSString *)generateResultsLabelWithMoves;
 
 @end

@@ -33,12 +33,15 @@
     
 }
 
--(NSString *)compareMovesAndPickWinner
+-(NSString *)generateResultsLabelWithMoves
 {
-//    if ([self.myConfirmedMove isEqualToString:@"Rock"]) {
-//        
-//    }
-    NSString *winrar = @"lol";
-    return winrar;
+    NSString *computedString = @"";
+    if ([self.myConfirmedMove isEqualToString:self.theirConfirmedMove]) {
+        computedString = [NSString stringWithFormat:@"%@ ties %@", self.myConfirmedMove, self.theirConfirmedMove];
+    }
+    else {
+        
+    }
+    return computedString;
 }
 @end
