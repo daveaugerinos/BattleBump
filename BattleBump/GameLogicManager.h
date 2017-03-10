@@ -7,16 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Move.h"
 
 @interface GameLogicManager : NSObject
 
 @property (strong, nonatomic) NSString *myConfirmedMove;
 @property (strong, nonatomic) NSString *theirConfirmedMove;
-@property (nonatomic) BOOL isGameOn;
 
 -(void)pickRandomMove;
--(void)readyForNextRound;
 -(NSString *)generateResultsLabelWithMoves;
 
 @end

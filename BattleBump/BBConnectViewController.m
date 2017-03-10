@@ -80,7 +80,6 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     if([self.invitees count] == 0) {
 
         [self.invitees addObject:invitee];
-        self.connectedToLabel.text = invitee.player.name;
     }
 
     else {
@@ -95,7 +94,8 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     }
 
     [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
-
+        
+        self.connectedToLabel.text = invitee.player.name;
         [self.inviteeCollectionView reloadData];
     }];
 }

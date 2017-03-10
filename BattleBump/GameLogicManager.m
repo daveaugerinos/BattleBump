@@ -28,10 +28,6 @@
     }
 }
 
--(void)readyForNextRound
-{
-    
-}
 
 -(NSString *)generateResultsLabelWithMoves
 {
@@ -41,6 +37,29 @@
     }
     else {
         
+        if ([self.myConfirmedMove isEqualToString:@"Rock"] && [self.theirConfirmedMove isEqualToString:@"Paper"]) {
+            computedString = [NSString stringWithFormat:@"%@ beats %@", self.myConfirmedMove, self.theirConfirmedMove];
+        }
+        
+        if ([self.myConfirmedMove isEqualToString:@"Rock"] && [self.theirConfirmedMove isEqualToString:@"Scissors"]) {
+            computedString = [NSString stringWithFormat:@"%@ beats %@", self.myConfirmedMove, self.theirConfirmedMove];
+        }
+        
+        if ([self.myConfirmedMove isEqualToString:@"Scissors"] && [self.theirConfirmedMove isEqualToString:@"Paper"]) {
+            computedString = [NSString stringWithFormat:@"%@ beats %@", self.myConfirmedMove, self.theirConfirmedMove];
+        }
+        
+        if ([self.myConfirmedMove isEqualToString:@"Scissors"] && [self.theirConfirmedMove isEqualToString:@"Rock"]) {
+            computedString = [NSString stringWithFormat:@"%@ beats %@", self.theirConfirmedMove, self.myConfirmedMove];
+        }
+        
+        if ([self.myConfirmedMove isEqualToString:@"Paper"] && [self.theirConfirmedMove isEqualToString:@"Scissors"]) {
+            computedString = [NSString stringWithFormat:@"%@ beats %@", self.theirConfirmedMove, self.myConfirmedMove];
+        }
+        
+        if ([self.myConfirmedMove isEqualToString:@"Paper"] && [self.theirConfirmedMove isEqualToString:@"Rock"]) {
+            computedString = [NSString stringWithFormat:@"%@ beats %@", self.myConfirmedMove, self.theirConfirmedMove];
+        }
     }
     return computedString;
 }

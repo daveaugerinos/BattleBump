@@ -9,9 +9,9 @@
 #import "BBGameViewController.h"
 #import "BattleBump-Swift.h"
 #import "GameLogicManager.h"
-#import "Move.h"
+#import "BBNetworkManager.h"
 
-@interface BBGameViewController ()
+@interface BBGameViewController  ()
 
 @property (weak, nonatomic) IBOutlet UICircularProgressRingView *progressRing;
 @property (weak, nonatomic) IBOutlet UILabel *rockLabel;
@@ -28,6 +28,8 @@
 @property (strong, nonatomic) Invitee *opponent;
 @property (strong, nonatomic) Invitee *me;
 
+@property (strong, nonatomic) BBNetworkManager *networkManager;
+
 @end
 
 @implementation BBGameViewController
@@ -37,7 +39,6 @@
     // Do any additional setup after loading the view.
 
     self.gameLogicManager = [[GameLogicManager alloc] init];
-    self.gameLogicManager.isGameOn = YES;
 
     [self configureAndEnableViews];
 }
@@ -56,11 +57,10 @@
 - (IBAction)readyButtonPressed:(UIButton *)sender
 {
     self.rockConfirmationIcon.alpha = 0.0;
-    self.rockLabel.userInteractionEnabled = YES;
+    
     self.paperConfirmationIcon.alpha = 0.0;
-    self.paperLabel.userInteractionEnabled = YES;
     self.scissorsConfirmationIcon.alpha = 0.0;
-    self.scissorsLabel.userInteractionEnabled = YES;
+    
     self.progressRing.alpha = 1.0;
     self.giantMoveLabel.alpha = 0.0;
 
@@ -84,22 +84,15 @@
 
         //set round over
         self.me.game.state = @"roundOver";
-
+        self.me.player.move = self.gameLogicManager.myConfirmedMove;
+        
         //notify opponent
-//        NSDictionary *dictionary = @{ @"invitee": self.me };
-//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
-//        NSError *error = nil;
-//        if (![self.bbcvc.mySession sendData:data
-//                              toPeers:self.bbcvc.mySession.connectedPeers
-//                             withMode:MCSessionSendDataReliable
-//                                error:&error]) {
-//            NSLog(@"[Error] %@", error);
-//        }
+        [self.networkManager send:self.me];
 
         
-        if ([self.opponent.game.state isEqualToString:@"roundOver"] && [self.me.game.state isEqualToString:@"roundOver"]) {
-//            [self roundConclusion];
-//        }
+        if ([self.opponent.game.state isEqualToString:@"roundOver"]) {
+            [self roundConclusion];
+        }
 
     }];
 }
@@ -203,14 +196,23 @@
 
 -(void)roundConclusion
 {
-//    update move labels
-//      sendData withstring: self.gameLogicManager.myConfirmedMove to Peers
-
-
-//    compare results
+    //update my views
+    self.theirLastMoveLabel.text = [NSString stringWithFormat:@"%@'s move: %@", self.opponent.player.name, self.opponent.player.move];
     self.resultLabel.text = [self.gameLogicManager generateResultsLabelWithMoves];
-//        game state to ready
-//        interaction enabled
+    
+    self.me.game.state = @"ready";
+    self.rockLabel.userInteractionEnabled = YES;
+    self.paperLabel.userInteractionEnabled = YES;
+    self.scissorsLabel.userInteractionEnabled = YES;
+}
+
+#pragma mark - Networking -
+
+-(void)receivedInviteeMessage:(Invitee *)invitee
+{
+    self.opponent = invitee;
+    self.gameLogicManager.theirConfirmedMove = self.opponent.player.move;
+    [self roundConclusion];
 }
 
 

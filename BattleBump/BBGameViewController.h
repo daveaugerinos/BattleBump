@@ -10,9 +10,8 @@
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 #import "BBConnectViewController.h"
 
-@interface BBGameViewController : UIViewController
+@interface BBGameViewController : UIViewController <BBNetworkManagerProtocol>
 
 @property (strong, nonatomic) NSMutableArray *playerInviteesArray;
-@property (strong, nonatomic) BBConnectViewController *bbcvc;
 
 @end
