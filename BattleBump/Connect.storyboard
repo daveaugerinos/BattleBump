@@ -201,6 +201,7 @@
                         <outlet property="playerEmojiTextField" destination="Tzk-WQ-saJ" id="QZz-uq-EWJ"/>
                         <outlet property="playerNameLabel" destination="6f1-e1-B6A" id="nO2-hl-rLf"/>
                         <outlet property="playerNameTextField" destination="EzF-ic-Bkz" id="86w-0A-ow7"/>
+                        <segue destination="QAO-Xw-iKZ" kind="show" identifier="startGame" id="Rl9-nx-eFT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6y-VG-JrG" userLabel="First Responder" sceneMemberID="firstResponder"/>

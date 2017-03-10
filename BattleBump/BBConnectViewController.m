@@ -168,6 +168,14 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     [self.view endEditing:YES];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    [self.playerNameTextField resignFirstResponder];
+    [self.playerEmojiTextField resignFirstResponder];
+    [self.gameNameTextField resignFirstResponder];
+    [self.gameStakesTextField resignFirstResponder];
+}
+
 
 # pragma mark - UICollectionViewDelegate methods -
 
