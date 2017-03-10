@@ -106,7 +106,6 @@
                                 <state key="normal" title="START GAME"/>
                                 <connections>
                                     <action selector="startGameButtonPressed:" destination="zyP-Ou-JCF" eventType="touchUpInside" id="vZk-AR-29d"/>
-                                    <segue destination="QAO-Xw-iKZ" kind="show" identifier="startGame" id="F8K-kN-f2f"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tGa-fW-IvY">

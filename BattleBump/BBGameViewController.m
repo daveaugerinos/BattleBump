@@ -28,8 +28,6 @@
 @property (strong, nonatomic) Invitee *opponent;
 @property (strong, nonatomic) Invitee *me;
 
-@property (strong, nonatomic) BBNetworkManager *networkManager;
-
 @end
 
 @implementation BBGameViewController
@@ -45,8 +43,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.me = self.playerInviteesArray[0];
     self.opponent = self.playerInviteesArray[1];
     self.currentPlayGameLabel.text = [NSString stringWithFormat:@"You are playing %@ for stakes: %@", self.opponent.player.name, self.opponent.game.stakes];
+    self.networkManager.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,45 +56,50 @@
 
 - (IBAction)readyButtonPressed:(UIButton *)sender
 {
-    self.rockConfirmationIcon.alpha = 0.0;
-    
-    self.paperConfirmationIcon.alpha = 0.0;
-    self.scissorsConfirmationIcon.alpha = 0.0;
-    
-    self.progressRing.alpha = 1.0;
-    self.giantMoveLabel.alpha = 0.0;
-
-    if(self.gameLogicManager.myConfirmedMove) {
-        self.gameLogicManager.myConfirmedMove = nil;
+    if([self.me.game.state isEqualToString:@"ready"] && [self.opponent.game.state isEqualToString:@"ready"]) {
+        
+        self.rockLabel.userInteractionEnabled = YES;
+        self.paperLabel.userInteractionEnabled = YES;
+        self.scissorsLabel.userInteractionEnabled = YES;
+        
+        self.theirLastMoveLabel.text = @"";
+        self.resultLabel.text = @"";
+        
+        self.rockConfirmationIcon.alpha = 0.0;
+        self.paperConfirmationIcon.alpha = 0.0;
+        self.scissorsConfirmationIcon.alpha = 0.0;
+        
+        self.progressRing.alpha = 1.0;
+        self.giantMoveLabel.alpha = 0.0;
+        
+        if(self.gameLogicManager.myConfirmedMove) {
+            self.gameLogicManager.myConfirmedMove = nil;
+        }
+        
+        [self.progressRing setProgressWithValue:(0.0) animationDuration:5.0 completion:^(void) {
+            
+            //picks random move if user hasn't chosen one by the time timer completes
+            if (!self.gameLogicManager.myConfirmedMove) {
+                [self.gameLogicManager pickRandomMove];
+                NSLog(@"randomly picked: %@", self.gameLogicManager.myConfirmedMove);
+            }
+            
+            [self drawGiantMoveLabel];
+            self.progressRing.alpha = 0.0;
+            //prevent choice after timer has run out
+            [self disableMoveChoice];
+            
+            [self.progressRing setProgressWithValue:5.0 animationDuration:0.1 completion:nil];
+            
+            //set round over
+            self.me.game.state = @"roundOver";
+            self.me.player.move = self.gameLogicManager.myConfirmedMove;
+            
+            //notify opponent
+            NSLog(@"Did Send");
+            [self.networkManager send:self.me];
+        }];
     }
-    [self.progressRing setProgressWithValue:(0.0) animationDuration:5.0 completion:^(void){
-
-        //picks random move if user hasn't chosen one by the time timer completes
-        if (!self.gameLogicManager.myConfirmedMove) {
-            [self.gameLogicManager pickRandomMove];
-            NSLog(@"randomly picked: %@", self.gameLogicManager.myConfirmedMove);
-        }
-
-        [self drawGiantMoveLabel];
-        self.progressRing.alpha = 0.0;
-        //prevent choice after timer has run out
-        [self disableMoveChoice];
-
-        [self.progressRing setProgressWithValue:5.0 animationDuration:0.1 completion:nil];
-
-        //set round over
-        self.me.game.state = @"roundOver";
-        self.me.player.move = self.gameLogicManager.myConfirmedMove;
-        
-        //notify opponent
-        [self.networkManager send:self.me];
-
-        
-        if ([self.opponent.game.state isEqualToString:@"roundOver"]) {
-            [self roundConclusion];
-        }
-
-    }];
 }
 
 -(void)drawGiantMoveLabel
@@ -197,22 +202,34 @@
 -(void)roundConclusion
 {
     //update my views
-    self.theirLastMoveLabel.text = [NSString stringWithFormat:@"%@'s move: %@", self.opponent.player.name, self.opponent.player.move];
-    self.resultLabel.text = [self.gameLogicManager generateResultsLabelWithMoves];
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
+        self.theirLastMoveLabel.text = [NSString stringWithFormat:@"%@'s move: %@", self.opponent.player.name, self.opponent.player.move];
+        
+        self.resultLabel.text = [self.gameLogicManager generateResultsLabelWithMoves];
+    }];
+    
+    
+   // self.me.game.state = @"ready";
+    
+    
+    [self.networkManager send:self.me];
     
     self.me.game.state = @"ready";
-    self.rockLabel.userInteractionEnabled = YES;
-    self.paperLabel.userInteractionEnabled = YES;
-    self.scissorsLabel.userInteractionEnabled = YES;
+    self.opponent.game.state = @"ready";
 }
 
 #pragma mark - Networking -
 
 -(void)receivedInviteeMessage:(Invitee *)invitee
 {
-    self.opponent = invitee;
-    self.gameLogicManager.theirConfirmedMove = self.opponent.player.move;
-    [self roundConclusion];
+ //   self.opponent = invitee;
+    self.gameLogicManager.theirConfirmedMove = invitee.player.move;
+    
+    if([invitee.game.state isEqualToString:@"roundOver"] && [self.me.game.state isEqualToString:@"roundOver"]) {
+    
+        [self roundConclusion];
+        
+    }
 }
 
 

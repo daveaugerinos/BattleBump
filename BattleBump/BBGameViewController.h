@@ -13,5 +13,6 @@
 @interface BBGameViewController : UIViewController <BBNetworkManagerProtocol>
 
 @property (strong, nonatomic) NSMutableArray *playerInviteesArray;
+@property (strong, nonatomic) BBNetworkManager *networkManager;
 
 @end

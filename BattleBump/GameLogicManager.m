@@ -38,7 +38,7 @@
     else {
         
         if ([self.myConfirmedMove isEqualToString:@"Rock"] && [self.theirConfirmedMove isEqualToString:@"Paper"]) {
-            computedString = [NSString stringWithFormat:@"%@ beats %@", self.myConfirmedMove, self.theirConfirmedMove];
+            computedString = [NSString stringWithFormat:@"%@ beats %@", self.theirConfirmedMove, self.myConfirmedMove];
         }
         
         if ([self.myConfirmedMove isEqualToString:@"Rock"] && [self.theirConfirmedMove isEqualToString:@"Scissors"]) {

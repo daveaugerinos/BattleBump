@@ -28,6 +28,7 @@
 @property (strong, nonatomic) Invitee *me;
 @property (weak, nonatomic) IBOutlet UILabel *connectedToLabel;
 @property (strong, nonatomic) NSMutableArray *playerInviteesArray;
+@property (assign, nonatomic) BOOL hasASelection;
 
 @end
 
@@ -45,6 +46,8 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 
     self.invitees = [[NSMutableArray alloc] init];
     self.playerInviteesArray = [[NSMutableArray alloc] init];
+    
+    self.hasASelection = NO;
 }
 
 
@@ -118,31 +121,37 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     // Check for valid game name
     // Check for valid game stakes
 
-    Player *player = [[Player alloc] initWithName:playerName emoji:playerEmoji move:@"init"];
-    Game *game = [[Game alloc] initWithName:gameName stakes:gameStakes state:@"init"];
+    Player *player = [[Player alloc] initWithName:playerName emoji:playerEmoji move:@"join"];
+    Game *game = [[Game alloc] initWithName:gameName stakes:gameStakes state:@"join"];
     self.me = [[Invitee alloc]initWithPlayer:player game:game];
 
     [self.networkManager joinWithInvitee:self.me];
 }
 
-
 - (IBAction)sendInviteButtonPressed:(UIButton *)sender {
 
-    NSLog(@"Start Game!\n");
-
+    NSLog(@"Send invite\n");
+    
     [self.networkManager send:self.me];
 }
 
-
 - (IBAction)startGameButtonPressed:(UIButton *)sender {
 
-    [self performSegueWithIdentifier:@"startGame" sender:sender];
+    NSLog(@"Start game button pressed\n");
+    
+    if(self.hasASelection == YES) {
+        
+         NSLog(@"Starting game...\n");
+        
+        [self performSegueWithIdentifier:@"startGame" sender:sender];
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-    BBGameViewController *bbgvc = segue.destinationViewController;
-    bbgvc.playerInviteesArray = [self.playerInviteesArray mutableCopy];
+    BBGameViewController *bbGameVC = segue.destinationViewController;
+    bbGameVC.playerInviteesArray = [self.playerInviteesArray mutableCopy];
+    bbGameVC.networkManager = self.networkManager;
 }
 
 
@@ -175,6 +184,8 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 
         invitee.game.state = @"ready";
     }
+    
+    self.hasASelection = YES;
 }
 
 @end
