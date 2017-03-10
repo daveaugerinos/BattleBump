@@ -41,7 +41,7 @@
     [self configureAndEnableViews];
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     self.me = self.playerInviteesArray[0];
     self.opponent = self.playerInviteesArray[1];
@@ -102,7 +102,7 @@
     }
 }
 
--(void)drawGiantMoveLabel
+- (void)drawGiantMoveLabel
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
         self.giantMoveLabel.alpha = 1.0;
@@ -124,14 +124,14 @@
     }];
 }
 
--(void)disableMoveChoice
+- (void)disableMoveChoice
 {
     self.rockLabel.userInteractionEnabled = NO;
     self.paperLabel.userInteractionEnabled = NO;
     self.scissorsLabel.userInteractionEnabled = NO;
 }
 
--(void)configureAndEnableViews
+- (void)configureAndEnableViews
 {
     self.rockLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *confirmRock = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didConfirmRock)];
@@ -148,7 +148,7 @@
 
 #pragma mark - Confirmations -
 
--(void)didConfirmRock
+- (void)didConfirmRock
 {
     if(!self.rockConfirmationIcon) {
         self.rockConfirmationIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.rockLabel.bounds.origin.x, self.rockLabel.bounds.origin.y, self.rockLabel.bounds.size.width, self.rockLabel.bounds.size.height)];
@@ -165,7 +165,7 @@
     self.gameLogicManager.myConfirmedMove = @"Rock";
 }
 
--(void)didConfirmPaper
+- (void)didConfirmPaper
 {
     if(!self.paperConfirmationIcon) {
         self.paperConfirmationIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.paperLabel.bounds.origin.x, self.paperLabel.bounds.origin.y, self.paperLabel.bounds.size.width, self.paperLabel.bounds.size.height)];
@@ -182,7 +182,7 @@
     self.gameLogicManager.myConfirmedMove = @"Paper";
 }
 
--(void)didConfirmScissors
+- (void)didConfirmScissors
 {
     if(!self.scissorsConfirmationIcon) {
         self.scissorsConfirmationIcon = [[UIImageView alloc] initWithFrame:CGRectMake(self.scissorsLabel.bounds.origin.x, self.scissorsLabel.bounds.origin.y, self.scissorsLabel.bounds.size.width, self.scissorsLabel.bounds.size.height)];
@@ -199,18 +199,14 @@
     self.gameLogicManager.myConfirmedMove = @"Scissors";
 }
 
--(void)roundConclusion
+- (void)roundConclusion
 {
     //update my views
     [[NSOperationQueue mainQueue] addOperationWithBlock:^ {
-        self.theirLastMoveLabel.text = [NSString stringWithFormat:@"%@'s move: %@", self.opponent.player.name, self.opponent.player.move];
+        self.theirLastMoveLabel.text = [NSString stringWithFormat:@"%@ played: %@", self.opponent.player.name, self.opponent.player.move];
         
         self.resultLabel.text = [self.gameLogicManager generateResultsLabelWithMoves];
     }];
-    
-    
-   // self.me.game.state = @"ready";
-    
     
     [self.networkManager send:self.me];
     
@@ -220,18 +216,18 @@
 
 #pragma mark - Networking -
 
--(void)receivedInviteeMessage:(Invitee *)invitee
+- (void)receivedInviteeMessage:(Invitee *)invitee
 {
- //   self.opponent = invitee;
-    self.gameLogicManager.theirConfirmedMove = invitee.player.move;
+    self.opponent.player.move = invitee.player.move;
+    self.gameLogicManager.theirConfirmedMove = self.opponent.player.move;
+    
+    
     
     if([invitee.game.state isEqualToString:@"roundOver"] && [self.me.game.state isEqualToString:@"roundOver"]) {
-    
+        
         [self roundConclusion];
         
     }
 }
-
-
 
 @end
