@@ -129,7 +129,10 @@ static NSString * const reuseIdentifier = @"inviteeCell";
             }
         }
     }
-    [self.inviteeCollectionView reloadData];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
+        [self.inviteeCollectionView reloadData];
+    }];
 }
 
 
