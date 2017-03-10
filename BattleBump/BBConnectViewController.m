@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *connectedToLabel;
 @property (strong, nonatomic) NSMutableArray *playerInviteesArray;
 @property (assign, nonatomic) BOOL hasASelection;
+@property (strong, nonatomic) NSMutableArray *cellSelected;
 
 @end
 
@@ -46,8 +47,14 @@ static NSString * const reuseIdentifier = @"inviteeCell";
 
     self.invitees = [[NSMutableArray alloc] init];
     self.playerInviteesArray = [[NSMutableArray alloc] init];
+    self.cellSelected = [[NSMutableArray alloc] init];
     
     self.hasASelection = NO;
+    
+    self.playerNameTextField.layer.borderWidth = 0.5;
+    self.playerEmojiTextField.layer.borderWidth = 0.5;
+    self.gameNameTextField.layer.borderWidth = 0.5;
+    self.gameStakesTextField.layer.borderWidth = 0.5;
 }
 
 
@@ -69,9 +76,18 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     BBConnectCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
 
     // Configure the cell
-    Invitee *invitee = [self.invitees objectAtIndex:indexPath.row];
+    Invitee *invitee = [self.invitees objectAtIndex:indexPath.item];
     cell.invitee = invitee;
 
+    if ([self.cellSelected containsObject:indexPath])
+    {
+        cell.checkMarkView.checked = YES;
+    }
+    else
+    {
+        cell.checkMarkView.checked = NO;
+    }
+    
     return cell;
 }
 
@@ -193,7 +209,18 @@ static NSString * const reuseIdentifier = @"inviteeCell";
         invitee.game.state = @"ready";
     }
     
-    self.hasASelection = YES;
+    if ([self.cellSelected containsObject:indexPath])
+    {
+        [self.cellSelected removeObject:indexPath];
+        self.hasASelection = NO;
+    }
+    else
+    {
+        [self.cellSelected addObject:indexPath];
+        self.hasASelection = YES;
+    }
+    
+    [self.inviteeCollectionView reloadData];
 }
 
 @end

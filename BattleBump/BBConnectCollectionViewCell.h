@@ -12,5 +12,8 @@
 @interface BBConnectCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) Invitee *invitee;
+@property (strong, nonatomic) IBOutlet BBCheckMark *checkMarkView;
+
+- (instancetype)initWithFrame:(CGRect)frame;
 
 @end

@@ -26,6 +26,7 @@
 		A2A182511E6E0613006F5DA8 /* Connect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A182501E6E0613006F5DA8 /* Connect.storyboard */; };
 		A2A182531E6E061E006F5DA8 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2A182521E6E061E006F5DA8 /* Game.storyboard */; };
 		A2A182561E6E127B006F5DA8 /* BBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2A182551E6E127B006F5DA8 /* BBRootViewController.m */; };
+		A2A76BAA1E732F450046268D /* BBCheckMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2A76BA91E732F450046268D /* BBCheckMark.swift */; };
 		A2BDFEBE1E723A140098A967 /* BBNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A2BDFEBD1E723A140098A967 /* BBNetworkManager.m */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		A2A182521E6E061E006F5DA8 /* Game.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
 		A2A182541E6E127B006F5DA8 /* BBRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBRootViewController.h; sourceTree = "<group>"; };
 		A2A182551E6E127B006F5DA8 /* BBRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBRootViewController.m; sourceTree = "<group>"; };
+		A2A76BA91E732F450046268D /* BBCheckMark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBCheckMark.swift; sourceTree = "<group>"; };
 		A2BD05341E6E50A200AE31D3 /* BattleBump-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BattleBump-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		A2BDFEBC1E723A140098A967 /* BBNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBNetworkManager.h; path = ../BBNetworkManager.h; sourceTree = "<group>"; };
 		A2BDFEBD1E723A140098A967 /* BBNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBNetworkManager.m; path = ../BBNetworkManager.m; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			children = (
 				A25D7B1C1E6F66EF0090BC65 /* BBConnectCollectionViewCell.h */,
 				A25D7B1D1E6F66EF0090BC65 /* BBConnectCollectionViewCell.m */,
+				A2A76BA91E732F450046268D /* BBCheckMark.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 			files = (
 				A25D7B201E6F74050090BC65 /* Invitee.swift in Sources */,
 				A25D7B191E6F60A50090BC65 /* Player.swift in Sources */,
+				A2A76BAA1E732F450046268D /* BBCheckMark.swift in Sources */,
 				A260C35C1E6DF1A600F5F84F /* AppDelegate.m in Sources */,
 				A2BDFEBE1E723A140098A967 /* BBNetworkManager.m in Sources */,
 				A22C50D71E6E162300A476F0 /* BBConnectViewController.m in Sources */,

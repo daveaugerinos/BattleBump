@@ -18,6 +18,23 @@
 
 @implementation BBConnectCollectionViewCell
 
+// Override init
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    
+    if (self) {
+        
+        self.checkMarkView = [[BBCheckMark alloc] init];
+        self.checkMarkView.frame = CGRectMake(frame.size.width - 40, 10, 35, 35);
+        self.checkMarkView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:self.checkMarkView];
+    }
+    
+    return self;
+}
+
+
 -(void)setInvitee:(Invitee *)invitee {
     
     _invitee = invitee;

@@ -11,5 +11,4 @@
 
 @interface BBConnectViewController : UIViewController <UITextFieldDelegate, UICollectionViewDelegate, BBNetworkManagerProtocol>
 
-
 @end
