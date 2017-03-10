@@ -35,10 +35,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     self.gameLogicManager = [[GameLogicManager alloc] init];
     self.gameLogicManager.isGameOn = YES;
-    
+
     [self configureAndEnableViews];
 }
 
@@ -63,28 +63,28 @@
     self.scissorsLabel.userInteractionEnabled = YES;
     self.progressRing.alpha = 1.0;
     self.giantMoveLabel.alpha = 0.0;
-    
+
     if(self.gameLogicManager.myConfirmedMove) {
         self.gameLogicManager.myConfirmedMove = nil;
     }
     [self.progressRing setProgressWithValue:(0.0) animationDuration:5.0 completion:^(void){
-        
+
         //picks random move if user hasn't chosen one by the time timer completes
         if (!self.gameLogicManager.myConfirmedMove) {
             [self.gameLogicManager pickRandomMove];
             NSLog(@"randomly picked: %@", self.gameLogicManager.myConfirmedMove);
         }
-        
+
         [self drawGiantMoveLabel];
         self.progressRing.alpha = 0.0;
         //prevent choice after timer has run out
         [self disableMoveChoice];
-        
+
         [self.progressRing setProgressWithValue:5.0 animationDuration:0.1 completion:nil];
-        
+
         //set round over
         self.me.game.state = @"roundOver";
-        
+
         //notify opponent
 //        NSDictionary *dictionary = @{ @"invitee": self.me };
 //        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:dictionary];
@@ -95,11 +95,12 @@
 //                                error:&error]) {
 //            NSLog(@"[Error] %@", error);
 //        }
-//        
-//        if ([self.opponent.game.state isEqualToString:@"roundOver"] && [self.me.game.state isEqualToString:@"roundOver"]) {
+
+        
+        if ([self.opponent.game.state isEqualToString:@"roundOver"] && [self.me.game.state isEqualToString:@"roundOver"]) {
 //            [self roundConclusion];
 //        }
-        
+
     }];
 }
 
@@ -137,11 +138,11 @@
     self.rockLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *confirmRock = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didConfirmRock)];
     [self.rockLabel addGestureRecognizer:confirmRock];
-    
+
     self.paperLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *confirmPaper = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didConfirmPaper)];
     [self.paperLabel addGestureRecognizer:confirmPaper];
-    
+
     self.scissorsLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *confirmScissors = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didConfirmScissors)];
     [self.scissorsLabel addGestureRecognizer:confirmScissors];
@@ -157,12 +158,12 @@
         self.rockConfirmationIcon.tintColor = [UIColor greenColor];
         [self.rockLabel addSubview:self.rockConfirmationIcon];
     }
-    
+
     //hide other confirmations
     self.rockConfirmationIcon.alpha = 0.5;
     self.paperConfirmationIcon.alpha = 0.0;
     self.scissorsConfirmationIcon.alpha = 0.0;
-    
+
     self.gameLogicManager.myConfirmedMove = @"Rock";
 }
 
@@ -174,12 +175,12 @@
         self.paperConfirmationIcon.tintColor = [UIColor greenColor];
         [self.paperLabel addSubview:self.paperConfirmationIcon];
     }
-    
+
     //hide other confirmations
     self.paperConfirmationIcon.alpha = 0.5;
     self.rockConfirmationIcon.alpha = 0.0;
     self.scissorsConfirmationIcon.alpha = 0.0;
-    
+
     self.gameLogicManager.myConfirmedMove = @"Paper";
 }
 
@@ -191,12 +192,12 @@
         self.scissorsConfirmationIcon.tintColor = [UIColor greenColor];
         [self.scissorsLabel addSubview:self.scissorsConfirmationIcon];
     }
-    
+
     //hide other confirmations
     self.scissorsConfirmationIcon.alpha = 0.5;
     self.rockConfirmationIcon.alpha = 0.0;
     self.paperConfirmationIcon.alpha = 0.0;
-    
+
     self.gameLogicManager.myConfirmedMove = @"Scissors";
 }
 
@@ -204,8 +205,8 @@
 {
 //    update move labels
 //      sendData withstring: self.gameLogicManager.myConfirmedMove to Peers
-    
-    
+
+
 //    compare results
     self.resultLabel.text = [self.gameLogicManager generateResultsLabelWithMoves];
 //        game state to ready
