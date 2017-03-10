@@ -86,15 +86,15 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJw-h8-QBe">
-                                <rect key="frame" x="144" y="226" width="46" height="30"/>
+                                <rect key="frame" x="124" y="229" width="107" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Join"/>
+                                <state key="normal" title="Join Network"/>
                                 <connections>
                                     <action selector="joinButtonPressed:" destination="zyP-Ou-JCF" eventType="touchUpInside" id="M6G-t1-bdo"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Invitees" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FlT-td-wJH">
-                                <rect key="frame" x="16" y="278" width="138" height="21"/>
+                                <rect key="frame" x="16" y="332" width="138" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -105,11 +105,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="START GAME"/>
                                 <connections>
-                                    <action selector="startGameButtonPressed:" destination="zyP-Ou-JCF" eventType="touchUpInside" id="tU7-hh-Ucf"/>
+                                    <action selector="startGameButtonPressed:" destination="zyP-Ou-JCF" eventType="touchUpInside" id="vZk-AR-29d"/>
+                                    <segue destination="QAO-Xw-iKZ" kind="show" identifier="startGame" id="F8K-kN-f2f"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tGa-fW-IvY">
-                                <rect key="frame" x="16" y="307" width="343" height="302"/>
+                                <rect key="frame" x="16" y="361" width="343" height="248"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rsL-yh-wwE">
@@ -171,8 +172,16 @@
                                     <outlet property="delegate" destination="zyP-Ou-JCF" id="pYm-fb-z51"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ConnectTo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="396-QT-f3T">
-                                <rect key="frame" x="207" y="278" width="152" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pF-Av-awV">
+                                <rect key="frame" x="126" y="296" width="111" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send Invite"/>
+                                <connections>
+                                    <action selector="sendInviteButtonPressed:" destination="zyP-Ou-JCF" eventType="touchUpInside" id="TTR-gB-DIV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connected With:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="396-QT-f3T">
+                                <rect key="frame" x="114" y="267" width="152" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -198,6 +207,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6y-VG-JrG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-911.20000000000005" y="796.55172413793105"/>
+        </scene>
+        <!--Game-->
+        <scene sceneID="N9p-K7-Lcp">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Game" storyboardName="Game" referencedIdentifier="Game" id="QAO-Xw-iKZ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0iU-KL-ztb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-282" y="796"/>
         </scene>
     </scenes>
 </document>
