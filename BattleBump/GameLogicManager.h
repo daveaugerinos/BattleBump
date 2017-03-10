@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) NSString *myConfirmedMove;
 @property (strong, nonatomic) NSString *theirConfirmedMove;
+@property (nonatomic) int roundsPlayedNumber;
+@property (nonatomic) int myWinsNumber;
 
 -(void)pickRandomMove;
 -(NSString *)generateResultsLabelWithMoves;

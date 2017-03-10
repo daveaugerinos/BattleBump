@@ -43,10 +43,12 @@
         
         if ([self.myConfirmedMove isEqualToString:@"Rock"] && [self.theirConfirmedMove isEqualToString:@"Scissors"]) {
             computedString = [NSString stringWithFormat:@"%@ beats %@", self.myConfirmedMove, self.theirConfirmedMove];
+            self.myWinsNumber++;
         }
         
         if ([self.myConfirmedMove isEqualToString:@"Scissors"] && [self.theirConfirmedMove isEqualToString:@"Paper"]) {
             computedString = [NSString stringWithFormat:@"%@ beats %@", self.myConfirmedMove, self.theirConfirmedMove];
+            self.myWinsNumber++;
         }
         
         if ([self.myConfirmedMove isEqualToString:@"Scissors"] && [self.theirConfirmedMove isEqualToString:@"Rock"]) {
@@ -59,6 +61,7 @@
         
         if ([self.myConfirmedMove isEqualToString:@"Paper"] && [self.theirConfirmedMove isEqualToString:@"Rock"]) {
             computedString = [NSString stringWithFormat:@"%@ beats %@", self.myConfirmedMove, self.theirConfirmedMove];
+            self.myWinsNumber++;
         }
     }
     return computedString;
