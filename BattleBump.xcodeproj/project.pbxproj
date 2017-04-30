@@ -10,7 +10,7 @@
 		3F35265D1E6E4EF800D84F2C /* UICircularProgressRingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F35265C1E6E4EF800D84F2C /* UICircularProgressRingLayer.swift */; };
 		3F3526601E6E4F5E00D84F2C /* UICircularProgressRingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F35265F1E6E4F5E00D84F2C /* UICircularProgressRingDelegate.swift */; };
 		3F3526621E6E4FC400D84F2C /* UICircularProgressRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3526611E6E4FC400D84F2C /* UICircularProgressRingView.swift */; };
-		3F9B86041E6F9BEE00C7AAE5 /* GameLogicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B86031E6F9BEE00C7AAE5 /* GameLogicManager.m */; };
+		3FE23B491EB57389007DB657 /* GameLogicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE23B481EB57389007DB657 /* GameLogicManager.swift */; };
 		A22C50D71E6E162300A476F0 /* BBConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A22C50D61E6E162300A476F0 /* BBConnectViewController.m */; };
 		A22C50DA1E6E163100A476F0 /* BBGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A22C50D91E6E163100A476F0 /* BBGameViewController.m */; };
 		A25D7B191E6F60A50090BC65 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25D7B181E6F60A50090BC65 /* Player.swift */; };
@@ -44,8 +44,7 @@
 		3F35265C1E6E4EF800D84F2C /* UICircularProgressRingLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingLayer.swift; sourceTree = "<group>"; };
 		3F35265F1E6E4F5E00D84F2C /* UICircularProgressRingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingDelegate.swift; sourceTree = "<group>"; };
 		3F3526611E6E4FC400D84F2C /* UICircularProgressRingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICircularProgressRingView.swift; sourceTree = "<group>"; };
-		3F9B86021E6F9BEE00C7AAE5 /* GameLogicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLogicManager.h; sourceTree = "<group>"; };
-		3F9B86031E6F9BEE00C7AAE5 /* GameLogicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLogicManager.m; sourceTree = "<group>"; };
+		3FE23B481EB57389007DB657 /* GameLogicManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLogicManager.swift; sourceTree = "<group>"; };
 		A22C50D51E6E162300A476F0 /* BBConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBConnectViewController.h; sourceTree = "<group>"; };
 		A22C50D61E6E162300A476F0 /* BBConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBConnectViewController.m; sourceTree = "<group>"; };
 		A22C50D81E6E163100A476F0 /* BBGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBGameViewController.h; sourceTree = "<group>"; };
@@ -170,8 +169,7 @@
 				A25D7B181E6F60A50090BC65 /* Player.swift */,
 				A25D7B1A1E6F60B70090BC65 /* Game.swift */,
 				A25D7B1F1E6F74050090BC65 /* Invitee.swift */,
-				3F9B86021E6F9BEE00C7AAE5 /* GameLogicManager.h */,
-				3F9B86031E6F9BEE00C7AAE5 /* GameLogicManager.m */,
+				3FE23B481EB57389007DB657 /* GameLogicManager.swift */,
 				A2BDFEBC1E723A140098A967 /* BBNetworkManager.h */,
 				A2BDFEBD1E723A140098A967 /* BBNetworkManager.m */,
 				A260C35A1E6DF1A600F5F84F /* AppDelegate.h */,
@@ -320,9 +318,9 @@
 				A22C50D71E6E162300A476F0 /* BBConnectViewController.m in Sources */,
 				A2A182561E6E127B006F5DA8 /* BBRootViewController.m in Sources */,
 				3F35265D1E6E4EF800D84F2C /* UICircularProgressRingLayer.swift in Sources */,
-				3F9B86041E6F9BEE00C7AAE5 /* GameLogicManager.m in Sources */,
 				3F3526621E6E4FC400D84F2C /* UICircularProgressRingView.swift in Sources */,
 				3F3526601E6E4F5E00D84F2C /* UICircularProgressRingDelegate.swift in Sources */,
+				3FE23B491EB57389007DB657 /* GameLogicManager.swift in Sources */,
 				A25D7B1B1E6F60B70090BC65 /* Game.swift in Sources */,
 				A22C50DA1E6E163100A476F0 /* BBGameViewController.m in Sources */,
 				A25D7B1E1E6F66EF0090BC65 /* BBConnectCollectionViewCell.m in Sources */,

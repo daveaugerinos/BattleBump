@@ -8,7 +8,6 @@
 
 #import "BBGameViewController.h"
 #import "BattleBump-Swift.h"
-#import "GameLogicManager.h"
 #import "BBNetworkManager.h"
 
 @interface BBGameViewController  ()
@@ -75,7 +74,7 @@
         self.giantMoveLabel.alpha = 0.0;
         
         if(self.gameLogicManager.myConfirmedMove) {
-            self.gameLogicManager.myConfirmedMove = nil;
+            self.gameLogicManager.myConfirmedMove = @"";
         }
         
         [self.progressRing setProgressWithValue:(0.0) animationDuration:5.0 completion:^(void) {
