@@ -16,12 +16,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *playerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playerEmojiLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *gameStakesLabel;
 @property (weak, nonatomic) IBOutlet UITextField *playerNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *playerEmojiTextField;
 @property (weak, nonatomic) IBOutlet UITextField *gameNameTextField;
 @property (weak, nonatomic) IBOutlet UILabel *chooseInviteesLabel;
-@property (weak, nonatomic) IBOutlet UITextField *gameStakesTextField;
 @property (weak, nonatomic) IBOutlet UICollectionView *inviteeCollectionView;
 @property (strong, nonatomic) BBNetworkManager *networkManager;
 @property (strong, nonatomic) NSMutableArray <Invitee *> *invitees;
@@ -54,7 +52,6 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     self.playerNameTextField.layer.borderWidth = 0.5;
     self.playerEmojiTextField.layer.borderWidth = 0.5;
     self.gameNameTextField.layer.borderWidth = 0.5;
-    self.gameStakesTextField.layer.borderWidth = 0.5;
 }
 
 
@@ -130,15 +127,14 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     NSString *playerName = self.playerNameTextField.text;
     NSString *playerEmoji = self.playerEmojiTextField.text;
     NSString *gameName = self.gameNameTextField.text;
-    NSString *gameStakes = self.gameStakesTextField.text;
 
     // Check for valid player name
     // Check for valid emoji
     // Check for valid game name
-    // Check for valid game stakes
 
     Player *player = [[Player alloc] initWithName:playerName emoji:playerEmoji move:@"join"];
-    Game *game = [[Game alloc] initWithName:gameName stakes:gameStakes state:@"join"];
+    Game *game = [[Game alloc] initWithName:gameName state:@"join"];
+    
     self.me = [[Invitee alloc]initWithPlayer:player game:game];
 
     [self.networkManager joinWithInvitee:self.me];
@@ -189,7 +185,6 @@ static NSString * const reuseIdentifier = @"inviteeCell";
     [self.playerNameTextField resignFirstResponder];
     [self.playerEmojiTextField resignFirstResponder];
     [self.gameNameTextField resignFirstResponder];
-    [self.gameStakesTextField resignFirstResponder];
 }
 
 

@@ -46,7 +46,7 @@
 {
     self.me = self.playerInviteesArray[0];
     self.opponent = self.playerInviteesArray[1];
-    self.currentPlayGameLabel.text = [NSString stringWithFormat:@"You are playing %@ for stakes: %@", self.opponent.player.name, self.opponent.game.stakes];
+    self.currentPlayGameLabel.text = [NSString stringWithFormat:@"You are playing %@", self.opponent.player.name];
     self.networkManager.delegate = self;
 }
 
