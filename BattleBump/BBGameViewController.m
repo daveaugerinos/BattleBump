@@ -80,7 +80,7 @@
         [self.progressRing setProgressWithValue:(0.0) animationDuration:5.0 completion:^(void) {
             
             //picks random move if user hasn't chosen one by the time timer completes
-            if (!self.gameLogicManager.myConfirmedMove) {
+            if ([self.gameLogicManager.myConfirmedMove isEqualToString:@""]) {
                 [self.gameLogicManager pickRandomMove];
                 NSLog(@"randomly picked: %@", self.gameLogicManager.myConfirmedMove);
             }
